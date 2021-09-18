@@ -4,15 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_create_account.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_create_recipe.xml" value="0.4" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_home.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_recipe.xml" value="0.4" />
-        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.4904891304347826" />
+        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25250978698174964" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4904891304347826" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4904891304347826" />
+        <entry key="app/src/main/res/layout/activity_recipe.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.24074074074074073" />

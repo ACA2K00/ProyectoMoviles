@@ -7,30 +7,38 @@
     tools:context=".CreateAccountActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/CAEmailET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="245dp"
         android:ems="10"
-        android:hint="Enter Email"
+        android:hint="Email"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="226dp" />
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/CAPassET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:ems="10"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="343dp" />
+        android:hint="Password"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/CAEmailET"
+        app:layout_constraintTop_toBottomOf="@+id/CAEmailET" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/CACreateBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="20dp"
+        android:onClick="registro"
         android:text="Create Account"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="475dp" />
+        app:layout_constraintEnd_toEndOf="@+id/CAPassET"
+        app:layout_constraintTop_toBottomOf="@+id/CAPassET" />
 </androidx.constraintlayout.widget.ConstraintLayout>

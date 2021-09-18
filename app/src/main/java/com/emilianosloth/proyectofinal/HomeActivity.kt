@@ -11,15 +11,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class HomeActivity : AppCompatActivity() {
 
     lateinit var bottom_navigation: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        bottom_navigation = findViewById(R.id.bottom_navigation)
         val homeFragment = HomeFragment()
         val searchFragment = SearchFragment()
         val accountFragment = AccountFragment()
 
         makeCurrentFragment(homeFragment)
+
 
         bottom_navigation.setOnItemSelectedListener {
             when(it.itemId){

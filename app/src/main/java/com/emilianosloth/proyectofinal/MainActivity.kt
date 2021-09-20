@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var emailET: EditText
     lateinit var passET: EditText
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             passET.text.toString()).addOnCompleteListener(this){
                 if (it.isSuccessful){
                     Log.d("FIREBASE", "Login Exitoso")
-                    var intent = Intent(this, HomeActivity::class.java)
+                    var intent = Intent(this, RecipeActions::class.java)
                     startActivity(intent)
                 }else{
                     Toast.makeText(this, "Incorrect User or Password", Toast.LENGTH_SHORT).show()

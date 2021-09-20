@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeActions">
+    tools:context=".ProfileActivity">
 
     <Button
         android:id="@+id/upBT"
@@ -17,12 +17,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/pReturnBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="24dp"
-        android:text="Button"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="34dp"
+        android:text="RETURN"
         app:layout_constraintStart_toStartOf="@+id/upBT"
         app:layout_constraintTop_toBottomOf="@+id/upBT" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

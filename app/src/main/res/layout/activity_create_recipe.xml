@@ -24,7 +24,7 @@
         android:id="@+id/recipeIngredientsET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Recipe Ingredients (Separate by commas)"
@@ -36,8 +36,8 @@
 
     <EditText
         android:id="@+id/recipeInstructionsET"
-        android:layout_width="215dp"
-        android:layout_height="277dp"
+        android:layout_width="265dp"
+        android:layout_height="74dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Recipe Instructions"
@@ -46,13 +46,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeImageET"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.074" />
 
     <EditText
         android:id="@+id/recipeImageET"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Recipe Image (Insert URL)"
         android:inputType="textPersonName"

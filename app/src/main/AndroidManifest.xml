@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
         <activity
-            android:name=".RecipeActions"
+            android:name=".HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProfileActivity"
             android:exported="true" />
         <activity
             android:name=".CreateAccountActivity"
@@ -22,9 +25,6 @@
             android:exported="true" />
         <activity
             android:name=".RecipeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"

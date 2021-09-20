@@ -53,16 +53,14 @@ class MainActivity : AppCompatActivity() {
             passET.text.toString()).addOnCompleteListener(this){
                 if (it.isSuccessful){
                     Log.d("FIREBASE", "Login Exitoso")
-                    var intent = Intent(this, RecipeActions::class.java)
+                    var intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 }else{
                     Toast.makeText(this, "Incorrect User or Password", Toast.LENGTH_SHORT).show()
                 }
         }
-    }
-
-    fun logout(view: View?){
-        Firebase.auth.signOut()
+        emailET.text.clear()
+        passET.text.clear()
     }
 
     fun verificarUsuario(){ //verificar si el ususario  sigue logeaado

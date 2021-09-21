@@ -1,5 +1,6 @@
 package com.emilianosloth.proyectofinal
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -50,6 +51,7 @@ class MyRecipesActivity : AppCompatActivity() {
                     URLs[i] = document.getString("Image").toString()
                     names[i] = document.getString("Recipe Name").toString()
                     loadImg(images[i], URLs[i])
+                    images[i].setTag(URLs[i]).toString()
                     nameTVs[i].text = names[i]
                     i++
 
@@ -84,6 +86,13 @@ class MyRecipesActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun showRecipe(view: View?){
+        var intent = Intent(this, RecipeActivity::class.java)
+        intent.putExtra("URL", view?.getTag().toString())
+        Toast.makeText(this, view?.getTag().toString(), Toast.LENGTH_SHORT).show()
+        startActivity(intent)
     }
 
     fun goBack(view: View?){

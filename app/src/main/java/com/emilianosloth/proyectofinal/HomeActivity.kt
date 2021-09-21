@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         profileIB = findViewById(R.id.profileIB)
 
         profileIB.setOnClickListener {
-            var intent = Intent(this, ProfileActivity::class.java)
+            var intent = Intent(this, activity_user_profile::class.java)
             startActivity(intent)
         }
     }

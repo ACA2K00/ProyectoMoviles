@@ -12,14 +12,21 @@ import com.google.firebase.ktx.Firebase
 class HomeActivity : AppCompatActivity() {
     lateinit var logoutIB: ImageButton
     lateinit var profileIB: ImageButton
+    lateinit var mrIB: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         logoutIB = findViewById(R.id.logoutIB)
         profileIB = findViewById(R.id.profileIB)
+        mrIB = findViewById(R.id.myRecipesIB)
 
         profileIB.setOnClickListener {
             var intent = Intent(this, activity_user_profile::class.java)
+            startActivity(intent)
+        }
+
+        mrIB.setOnClickListener {
+            var intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
     }

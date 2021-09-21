@@ -10,8 +10,8 @@
         android:id="@+id/profileIB"
         android:layout_width="55dp"
         android:layout_height="48dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="44dp"
         android:contentDescription="User Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="44dp"
         android:contentDescription="Home"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
         android:onClick="logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toEndOf="@+id/searchIB"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
@@ -87,4 +87,25 @@
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="@+id/logoutIB"
         app:layout_constraintTop_toBottomOf="@+id/logoutIB" />
+
+    <ImageButton
+        android:id="@+id/myRecipesIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/myRecipesTV"
+        app:layout_constraintEnd_toEndOf="@+id/myRecipesTV"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/myRecipesTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="29dp"
+        android:text="My Recipes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

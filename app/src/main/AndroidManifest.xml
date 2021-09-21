@@ -12,11 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
         <activity
-<<<<<<< HEAD
+
             android:name=".MyRecipesActivity"
-=======
+            android:exported="true"/>
+
+        <activity
             android:name=".activity_user_profile"
->>>>>>> jd
             android:exported="true" />
         <activity
             android:name=".HomeActivity"

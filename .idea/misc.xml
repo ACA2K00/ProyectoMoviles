@@ -5,9 +5,10 @@
       <map>
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_create_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_create_recipe.xml" value="0.264" />
-        <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_home.xml" value="0.4" />
+        <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_my_recipes.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_recipe.xml" value="0.4" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_recipe_actions.xml" value="0.25416666666666665" />
@@ -31,5 +32,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4" />
+      </ProjectState>
+    </option>
   </component>
 </project>

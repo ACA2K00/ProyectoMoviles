@@ -76,8 +76,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart(){
+        Firebase.auth.signOut()
         super.onStart()
-        verificarUsuario()
+        //verificarUsuario()
         //verificar siempre que la actividad vuelva a correr
     }
 

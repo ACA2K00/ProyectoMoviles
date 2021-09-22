@@ -1,5 +1,6 @@
 package com.emilianosloth.proyectofinal
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -14,41 +15,46 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.concurrent.Executors
 
-class RecipeActivity : AppCompatActivity() {
-    lateinit var recipeName: TextView
-    lateinit var authorName: TextView
-    lateinit var recipeIngredients: TextView
-    lateinit var recipeInstructions: TextView
-    lateinit var recipeImage: ImageView
-    lateinit var rReturnBT: Button
-    lateinit var URLStr: String
+class MyRecipesActivity : AppCompatActivity() {
+    lateinit var img1: ImageButton
+    lateinit var img2: ImageButton
+    lateinit var img3: ImageButton
+    lateinit var name1: TextView
+    lateinit var name2: TextView
+    lateinit var name3: TextView
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recipe)
-        recipeName = findViewById(R.id.recipeNameTV)
-        authorName = findViewById(R.id.recipeAuthorTV)
-        recipeIngredients = findViewById(R.id.recipeIngredientsTV)
-        recipeInstructions = findViewById(R.id.recipeDescriptionTV)
-        recipeImage = findViewById(R.id.recipeImageIV)
-        rReturnBT = findViewById(R.id.recipeCloseBT)
-        URLStr = intent.getStringExtra("URL").toString()
-        displayRecipe()
+        setContentView(R.layout.activity_my_recipes)
+        img1 = findViewById(R.id.recipeImg1IB)
+        img2 = findViewById(R.id.recipeImg2IB)
+        img3 = findViewById(R.id.recipeImg3IB)
+        name1 = findViewById(R.id.recipeNameTV1)
+        name2 = findViewById(R.id.recipeNameTV2)
+        name3 = findViewById(R.id.recipeNameTV3)
+
+        callRecipes()
     }
 
-    fun displayRecipe(){
+    fun callRecipes(){
+        val URLs = arrayOf("","","")
+        val images = arrayOf(img1,img2,img3)
+        val names = arrayOf("","","")
+        val nameTVs = arrayOf(name1,name2,name3)
+        var i = 0
         db.collection("recetas")
             .whereEqualTo("Autor", Firebase.auth.currentUser?.email)
-            .whereEqualTo("Image", URLStr)
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
-                    recipeName.text = document.getString("Recipe Name").toString()
-                    authorName.text = "By: " + document.getString("Autor").toString()
-                    recipeIngredients.text = document.getString("Ingredients").toString()
-                    recipeInstructions.text = document.getString("Instructions").toString()
-                    loadImg(recipeImage, document.getString("Image").toString())
+                    URLs[i] = document.getString("Image").toString()
+                    names[i] = document.getString("Recipe Name").toString()
+                    loadImg(images[i], URLs[i])
+                    images[i].setTag(URLs[i]).toString()
+                    nameTVs[i].text = names[i]
+                    i++
+
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
             }
@@ -58,7 +64,7 @@ class RecipeActivity : AppCompatActivity() {
             }
     }
 
-    fun loadImg(view: ImageView, url: String){
+    fun loadImg(view: ImageButton, url: String){
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
 
@@ -80,6 +86,13 @@ class RecipeActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun showRecipe(view: View?){
+        var intent = Intent(this, RecipeActivity::class.java)
+        intent.putExtra("URL", view?.getTag().toString())
+        Toast.makeText(this, view?.getTag().toString(), Toast.LENGTH_SHORT).show()
+        startActivity(intent)
     }
 
     fun goBack(view: View?){

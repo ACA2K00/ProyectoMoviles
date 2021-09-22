@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 class CreateAccountActivity : AppCompatActivity() {
 
     lateinit var createButton: Button
+    lateinit var returnBT : Button
     lateinit var emailET: EditText
     lateinit var passET: EditText
 
@@ -21,8 +22,13 @@ class CreateAccountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_account)
 
         createButton = findViewById(R.id.CACreateBT)
+        returnBT = findViewById(R.id.returnBT)
         emailET = findViewById(R.id.CAEmailET)
         passET = findViewById(R.id.CAPassET)
+    }
+
+    fun goBack(view: View?){
+        finish()
     }
 
     fun registro(view: View?){

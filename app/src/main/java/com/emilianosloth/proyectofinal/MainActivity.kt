@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var emailET: EditText
     lateinit var passET: EditText
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,10 +59,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Incorrect User or Password", Toast.LENGTH_SHORT).show()
                 }
         }
-    }
-
-    fun logout(view: View?){
-        Firebase.auth.signOut()
+        emailET.text.clear()
+        passET.text.clear()
     }
 
     fun verificarUsuario(){ //verificar si el ususario  sigue logeaado

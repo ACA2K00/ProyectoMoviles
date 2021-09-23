@@ -38,22 +38,38 @@ class MyRecipesActivity : AppCompatActivity() {
     }
 
     fun callRecipes(){
+        /*
         val URLs = arrayOf("","","")
         val images = arrayOf(img1,img2,img3)
         val names = arrayOf("","","")
+        val nameTVs = arrayOf(name1,name2,name3)*/
+        val URLs = arrayListOf<String>()
+        val images = arrayOf(img1,img2,img3)
+        val names = arrayListOf<String>()
         val nameTVs = arrayOf(name1,name2,name3)
         var i = 0
+        var j = 0
         db.collection("recetas")
             .whereEqualTo("Autor", Firebase.auth.currentUser?.email)
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
+                    /*
                     URLs[i] = document.getString("Image").toString()
                     names[i] = document.getString("Recipe Name").toString()
                     loadImg(images[i], URLs[i])
                     images[i].setTag(URLs[i]).toString()
                     nameTVs[i].text = names[i]
+                    i++*/
+
+                    if(j > 2) j = 0
+                    URLs.add(document.getString("Image").toString())
+                    names.add(document.getString("Recipe Name").toString())
+                    loadImg(images[j], URLs[i])
+                    images[j].setTag(URLs[i]).toString()
+                    nameTVs[j].text = names[i]
                     i++
+                    j++
 
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
@@ -91,7 +107,7 @@ class MyRecipesActivity : AppCompatActivity() {
     fun showRecipe(view: View?){
         var intent = Intent(this, RecipeActivity::class.java)
         intent.putExtra("URL", view?.getTag().toString())
-        Toast.makeText(this, view?.getTag().toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, view?.getTag().toString(), Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }
 

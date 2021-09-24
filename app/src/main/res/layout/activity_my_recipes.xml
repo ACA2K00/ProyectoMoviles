@@ -100,9 +100,19 @@
         android:id="@+id/nextBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="4dp"
         android:text="Next"
         app:layout_constraintBottom_toTopOf="@+id/mrReturnBT"
         app:layout_constraintStart_toEndOf="@+id/mrReturnBT" />
+
+    <Button
+        android:id="@+id/prevBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginBottom="4dp"
+        android:text="PREV"
+        app:layout_constraintBottom_toTopOf="@+id/mrReturnBT"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,7 @@ class MyRecipesActivity : AppCompatActivity() {
     lateinit var name2: TextView
     lateinit var name3: TextView
     lateinit var nextBT: Button
+    lateinit var prevBT: Button
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,7 @@ class MyRecipesActivity : AppCompatActivity() {
         name2 = findViewById(R.id.recipeNameTV2)
         name3 = findViewById(R.id.recipeNameTV3)
         nextBT = findViewById(R.id.nextBT)
+        prevBT = findViewById(R.id.prevBT)
 
         //callRecipes-Start
         val URLs = arrayListOf<String>()
@@ -67,12 +69,13 @@ class MyRecipesActivity : AppCompatActivity() {
             }
         //callRecipes-End
 
+        //NextPage-Start
         nextBT.setOnClickListener{
-            currentRecipe += 3
             currentSpace = 0
+            currentRecipe += 3
+            Log.i("cRecipe", currentRecipe.toString())
             if(totalRecipes > currentRecipe){
                 for(i in currentRecipe..currentRecipe+2){
-                    Log.i("Count", i.toString())
                     if (i >= totalRecipes){ // i = 4 -> pos 5, totalRecipes = 4
                         loadImg(images[currentSpace], noImg)
                         images[currentSpace].setTag(noImg).toString()
@@ -85,8 +88,36 @@ class MyRecipesActivity : AppCompatActivity() {
                         currentSpace++
                     }
                 }
+            }else{
+                currentRecipe-=3
             }
         }
+        //NextPage-End
+
+        //PrevPage-Start
+        prevBT.setOnClickListener{
+            if (currentRecipe!=0){
+                currentSpace = 0
+                currentRecipe -= 3
+                Log.i("cRecipe", currentRecipe.toString())
+                if(totalRecipes > currentRecipe){
+                    for(i in currentRecipe..currentRecipe+2){
+                        if (i >= totalRecipes){ // i = 4 -> pos 5, totalRecipes = 4
+                            loadImg(images[currentSpace], noImg)
+                            images[currentSpace].setTag(noImg).toString()
+                            nameTVs[currentSpace].text = "No Recipe"
+                            currentSpace++
+                        }else {
+                            loadImg(images[currentSpace], URLs[i])
+                            images[currentSpace].setTag(URLs[i]).toString()
+                            nameTVs[currentSpace].text = names[i]
+                            currentSpace++
+                        }
+                    }
+                }
+            }
+        }
+        //PrevPage-End
     }
 
     fun loadImg(view: ImageButton, url: String){

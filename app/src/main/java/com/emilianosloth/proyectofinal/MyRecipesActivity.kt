@@ -145,9 +145,12 @@ class MyRecipesActivity : AppCompatActivity() {
     }
 
     fun showRecipe(view: View?){
-        var intent = Intent(this, RecipeActivity::class.java)
-        intent.putExtra("URL", view?.getTag().toString())
-        startActivity(intent)
+        if (view?.getTag().toString() != "https://jbarrios.com.ve/images/nofoto.jpg"){
+            var intent = Intent(this, RecipeActivity::class.java)
+            intent.putExtra("URL", view?.getTag().toString())
+            startActivity(intent)
+        }
+
     }
 
     fun goBack(view: View?){

@@ -41,7 +41,6 @@ class RecipeActivity : AppCompatActivity() {
 
     fun displayRecipe(){
         db.collection("recetas")
-            .whereEqualTo("Autor", Firebase.auth.currentUser?.email)
             .whereEqualTo("Image", URLStr)
             .get()
             .addOnSuccessListener { documents ->

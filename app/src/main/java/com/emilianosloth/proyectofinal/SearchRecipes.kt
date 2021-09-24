@@ -9,13 +9,16 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.concurrent.Executors
 
-class MyRecipesActivity : AppCompatActivity() {
+class SearchRecipes : AppCompatActivity() {
     lateinit var img1: ImageButton
     lateinit var img2: ImageButton
     lateinit var img3: ImageButton
@@ -24,19 +27,21 @@ class MyRecipesActivity : AppCompatActivity() {
     lateinit var name3: TextView
     lateinit var nextBT: Button
     lateinit var prevBT: Button
+    lateinit var catSTR: String
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_recipes)
-        img1 = findViewById(R.id.recipeImg1IB)
-        img2 = findViewById(R.id.recipeImg2IB)
-        img3 = findViewById(R.id.recipeImg3IB)
-        name1 = findViewById(R.id.recipeNameTV1)
-        name2 = findViewById(R.id.recipeNameTV2)
-        name3 = findViewById(R.id.recipeNameTV3)
-        nextBT = findViewById(R.id.nextBT)
-        prevBT = findViewById(R.id.prevBT)
+        setContentView(R.layout.activity_search_recipes)
+        img1 = findViewById(R.id.sRecipeImg1IB)
+        img2 = findViewById(R.id.sRecipeImg2IB)
+        img3 = findViewById(R.id.sRecipeImg3IB)
+        name1 = findViewById(R.id.sRecipeNameTV1)
+        name2 = findViewById(R.id.sRecipeNameTV2)
+        name3 = findViewById(R.id.sRecipeNameTV3)
+        nextBT = findViewById(R.id.sNextBT)
+        prevBT = findViewById(R.id.sPrevBT)
+        catSTR = intent.getStringExtra("Cat").toString()
 
         //callRecipes-Start
         val URLs = arrayListOf<String>()
@@ -48,7 +53,7 @@ class MyRecipesActivity : AppCompatActivity() {
         var currentRecipe = 0
         var noImg = "https://jbarrios.com.ve/images/nofoto.jpg"
         db.collection("recetas")
-            .whereEqualTo("Autor", Firebase.auth.currentUser?.email)
+            .whereEqualTo("Category", catSTR)
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){

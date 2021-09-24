@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyRecipesActivity">
+    tools:context=".SearchRecipes">
 
     <ImageButton
-        android:id="@+id/recipeImg1IB"
+        android:id="@+id/sRecipeImg1IB"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="42dp"
@@ -15,15 +15,15 @@
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="18dp"
         android:onClick="showRecipe"
-        app:layout_constraintBottom_toTopOf="@+id/recipeImg2IB"
-        app:layout_constraintEnd_toStartOf="@+id/recipeNameTV1"
+        app:layout_constraintBottom_toTopOf="@+id/sRecipeImg2IB"
+        app:layout_constraintEnd_toStartOf="@+id/sRecipeNameTV1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/recipeImg3IB"
+        android:id="@+id/sRecipeImg3IB"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="42dp"
@@ -31,62 +31,62 @@
         android:layout_marginBottom="328dp"
         android:onClick="showRecipe"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/recipeNameTV3"
+        app:layout_constraintEnd_toStartOf="@+id/sRecipeNameTV3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImg2IB"
+        app:layout_constraintTop_toBottomOf="@+id/sRecipeImg2IB"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/recipeImg2IB"
+        android:id="@+id/sRecipeImg2IB"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="42dp"
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="23dp"
         android:onClick="showRecipe"
-        app:layout_constraintBottom_toTopOf="@+id/recipeImg3IB"
-        app:layout_constraintEnd_toStartOf="@+id/recipeNameTV2"
+        app:layout_constraintBottom_toTopOf="@+id/sRecipeImg3IB"
+        app:layout_constraintEnd_toStartOf="@+id/sRecipeNameTV2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImg1IB"
+        app:layout_constraintTop_toBottomOf="@+id/sRecipeImg1IB"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/recipeNameTV1"
+        android:id="@+id/sRecipeNameTV1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="177dp"
         android:text="No Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recipeImg1IB"
-        app:layout_constraintTop_toTopOf="@+id/recipeImg1IB" />
+        app:layout_constraintStart_toEndOf="@+id/sRecipeImg1IB"
+        app:layout_constraintTop_toTopOf="@+id/sRecipeImg1IB" />
 
     <TextView
-        android:id="@+id/recipeNameTV2"
+        android:id="@+id/sRecipeNameTV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="177dp"
         android:layout_marginBottom="40dp"
         android:text="No Name"
-        app:layout_constraintBottom_toBottomOf="@+id/recipeImg2IB"
+        app:layout_constraintBottom_toBottomOf="@+id/sRecipeImg2IB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recipeImg2IB" />
+        app:layout_constraintStart_toEndOf="@+id/sRecipeImg2IB" />
 
     <TextView
-        android:id="@+id/recipeNameTV3"
+        android:id="@+id/sRecipeNameTV3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
         android:layout_marginEnd="177dp"
         android:text="No Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recipeImg3IB"
-        app:layout_constraintTop_toTopOf="@+id/recipeImg3IB" />
+        app:layout_constraintStart_toEndOf="@+id/sRecipeImg3IB"
+        app:layout_constraintTop_toTopOf="@+id/sRecipeImg3IB" />
 
     <Button
-        android:id="@+id/rReturnBT"
+        android:id="@+id/srReturnBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
@@ -97,22 +97,23 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/nextBT"
+        android:id="@+id/sNextBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="4dp"
         android:text="Next"
-        app:layout_constraintBottom_toTopOf="@+id/rReturnBT"
-        app:layout_constraintStart_toEndOf="@+id/rReturnBT" />
+        app:layout_constraintBottom_toTopOf="@+id/srReturnBT"
+        app:layout_constraintStart_toEndOf="@+id/srReturnBT" />
 
     <Button
-        android:id="@+id/prevBT"
+        android:id="@+id/sPrevBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:layout_marginBottom="4dp"
         android:text="PREV"
-        app:layout_constraintBottom_toTopOf="@+id/rReturnBT"
+        app:layout_constraintBottom_toTopOf="@+id/srReturnBT"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

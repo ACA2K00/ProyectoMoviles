@@ -12,10 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
         <activity
-
+            android:name=".SearchRecipes"
+            android:exported="true" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="true" />
+        <activity
             android:name=".MyRecipesActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".activity_user_profile"
             android:exported="true" />

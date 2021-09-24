@@ -13,12 +13,14 @@ class HomeActivity : AppCompatActivity() {
     lateinit var logoutIB: ImageButton
     lateinit var profileIB: ImageButton
     lateinit var mrIB: ImageButton
+    lateinit var srchIB: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         logoutIB = findViewById(R.id.logoutIB)
         profileIB = findViewById(R.id.profileIB)
         mrIB = findViewById(R.id.myRecipesIB)
+        srchIB = findViewById(R.id.searchIB)
 
         profileIB.setOnClickListener {
             var intent = Intent(this, activity_user_profile::class.java)
@@ -27,6 +29,11 @@ class HomeActivity : AppCompatActivity() {
 
         mrIB.setOnClickListener {
             var intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        srchIB.setOnClickListener {
+            var intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
     }

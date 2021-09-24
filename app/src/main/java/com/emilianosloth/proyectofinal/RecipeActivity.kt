@@ -19,6 +19,7 @@ class RecipeActivity : AppCompatActivity() {
     lateinit var authorName: TextView
     lateinit var recipeIngredients: TextView
     lateinit var recipeInstructions: TextView
+    lateinit var recipeCategory: TextView
     lateinit var recipeImage: ImageView
     lateinit var rReturnBT: Button
     lateinit var URLStr: String
@@ -31,6 +32,7 @@ class RecipeActivity : AppCompatActivity() {
         authorName = findViewById(R.id.recipeAuthorTV)
         recipeIngredients = findViewById(R.id.recipeIngredientsTV)
         recipeInstructions = findViewById(R.id.recipeDescriptionTV)
+        recipeCategory = findViewById(R.id.categoryTV)
         recipeImage = findViewById(R.id.recipeImageIV)
         rReturnBT = findViewById(R.id.recipeCloseBT)
         URLStr = intent.getStringExtra("URL").toString()
@@ -48,6 +50,7 @@ class RecipeActivity : AppCompatActivity() {
                     authorName.text = "By: " + document.getString("Autor").toString()
                     recipeIngredients.text = document.getString("Ingredients").toString()
                     recipeInstructions.text = document.getString("Instructions").toString()
+                    recipeCategory.text = document.getString("Category").toString()
                     loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }

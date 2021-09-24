@@ -22,6 +22,7 @@ class MyRecipesActivity : AppCompatActivity() {
     lateinit var name1: TextView
     lateinit var name2: TextView
     lateinit var name3: TextView
+    lateinit var nextBT: Button
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,51 +34,68 @@ class MyRecipesActivity : AppCompatActivity() {
         name1 = findViewById(R.id.recipeNameTV1)
         name2 = findViewById(R.id.recipeNameTV2)
         name3 = findViewById(R.id.recipeNameTV3)
+        nextBT = findViewById(R.id.nextBT)
 
-        callRecipes()
-    }
-
-    fun callRecipes(){
-        /*
-        val URLs = arrayOf("","","")
-        val images = arrayOf(img1,img2,img3)
-        val names = arrayOf("","","")
-        val nameTVs = arrayOf(name1,name2,name3)*/
+        //callRecipes-Start
         val URLs = arrayListOf<String>()
         val images = arrayOf(img1,img2,img3)
         val names = arrayListOf<String>()
         val nameTVs = arrayOf(name1,name2,name3)
-        var i = 0
-        var j = 0
+        var totalRecipes = 0
+        var currentSpace = 0
+        var currentRecipe = 0
+        var noImg = "https://jbarrios.com.ve/images/nofoto.jpg"
         db.collection("recetas")
             .whereEqualTo("Autor", Firebase.auth.currentUser?.email)
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
-                    /*
-                    URLs[i] = document.getString("Image").toString()
-                    names[i] = document.getString("Recipe Name").toString()
+                    //if(currentSpace > 2) currentSpace = 0
+                    URLs.add(document.getString("Image").toString())
+                    names.add(document.getString("Recipe Name").toString())
+                    totalRecipes++
+                    /*loadImg(images[currentSpace], URLs[totalRecipes])
+                    images[currentSpace].setTag(URLs[totalRecipes]).toString()
+                    nameTVs[currentSpace].text = names[totalRecipes]
+                    totalRecipes++
+                    currentSpace++*/
+
+                    Log.d("FIRESTORE", "${document.id} ${document.data}")
+                }
+                for(i in 0..2){
                     loadImg(images[i], URLs[i])
                     images[i].setTag(URLs[i]).toString()
                     nameTVs[i].text = names[i]
-                    i++*/
-
-                    if(j > 2) j = 0
-                    URLs.add(document.getString("Image").toString())
-                    names.add(document.getString("Recipe Name").toString())
-                    loadImg(images[j], URLs[i])
-                    images[j].setTag(URLs[i]).toString()
-                    nameTVs[j].text = names[i]
-                    i++
-                    j++
-
-                    Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
             }
             .addOnFailureListener{
                 Log.d("FIREBASE", "EXCEPTION: ${it.message}")
                 Toast.makeText(this, "ERROR: COULDN'T LOAD RECIPES", Toast.LENGTH_SHORT).show()
             }
+        //callRecipes-End
+
+        nextBT.setOnClickListener{
+            currentRecipe += 3
+            currentSpace = 0
+            if(totalRecipes >= currentRecipe){
+                for(i in currentRecipe..currentRecipe+2){
+                    if (i > totalRecipes-1){
+                        loadImg(images[currentSpace], noImg)
+                        images[currentSpace].setTag(noImg).toString()
+                        nameTVs[currentSpace].text = "No Recipe"
+
+                        loadImg(images[currentSpace+1], noImg)
+                        images[currentSpace+1].setTag(noImg).toString()
+                        nameTVs[currentSpace+1].text = "No Recipe"
+                    }else{
+                        loadImg(images[currentSpace], URLs[i])
+                        images[currentSpace].setTag(URLs[i]).toString()
+                        nameTVs[currentSpace].text = names[i]
+                        currentSpace++
+                    }
+                }
+            }
+        }
     }
 
     fun loadImg(view: ImageButton, url: String){

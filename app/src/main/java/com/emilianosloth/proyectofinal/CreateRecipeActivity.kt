@@ -55,5 +55,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                 Log.d("FIREBASE", "EXCEPTION: ${it.message}")
                 Toast.makeText(this, "ERROR: COULDN'T UPLOAD RECIPE", Toast.LENGTH_SHORT).show()
             }
+        finish()
     }
 }

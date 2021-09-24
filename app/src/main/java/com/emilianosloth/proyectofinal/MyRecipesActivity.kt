@@ -42,7 +42,7 @@ class MyRecipesActivity : AppCompatActivity() {
         val names = arrayListOf<String>()
         val nameTVs = arrayOf(name1,name2,name3)
         var totalRecipes = 0
-        var currentSpace = 0
+        var currentSpace: Int
         var currentRecipe = 0
         var noImg = "https://jbarrios.com.ve/images/nofoto.jpg"
         db.collection("recetas")
@@ -50,16 +50,9 @@ class MyRecipesActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
-                    //if(currentSpace > 2) currentSpace = 0
                     URLs.add(document.getString("Image").toString())
                     names.add(document.getString("Recipe Name").toString())
                     totalRecipes++
-                    /*loadImg(images[currentSpace], URLs[totalRecipes])
-                    images[currentSpace].setTag(URLs[totalRecipes]).toString()
-                    nameTVs[currentSpace].text = names[totalRecipes]
-                    totalRecipes++
-                    currentSpace++*/
-
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
                 for(i in 0..2){
@@ -77,17 +70,15 @@ class MyRecipesActivity : AppCompatActivity() {
         nextBT.setOnClickListener{
             currentRecipe += 3
             currentSpace = 0
-            if(totalRecipes >= currentRecipe){
+            if(totalRecipes > currentRecipe){
                 for(i in currentRecipe..currentRecipe+2){
-                    if (i > totalRecipes-1){
+                    Log.i("Count", i.toString())
+                    if (i >= totalRecipes){ // i = 4 -> pos 5, totalRecipes = 4
                         loadImg(images[currentSpace], noImg)
                         images[currentSpace].setTag(noImg).toString()
                         nameTVs[currentSpace].text = "No Recipe"
-
-                        loadImg(images[currentSpace+1], noImg)
-                        images[currentSpace+1].setTag(noImg).toString()
-                        nameTVs[currentSpace+1].text = "No Recipe"
-                    }else{
+                        currentSpace++
+                    }else {
                         loadImg(images[currentSpace], URLs[i])
                         images[currentSpace].setTag(URLs[i]).toString()
                         nameTVs[currentSpace].text = names[i]
@@ -125,7 +116,6 @@ class MyRecipesActivity : AppCompatActivity() {
     fun showRecipe(view: View?){
         var intent = Intent(this, RecipeActivity::class.java)
         intent.putExtra("URL", view?.getTag().toString())
-        //Toast.makeText(this, view?.getTag().toString(), Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }
 

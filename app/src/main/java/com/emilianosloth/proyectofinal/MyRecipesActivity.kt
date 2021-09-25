@@ -57,10 +57,18 @@ class MyRecipesActivity : AppCompatActivity() {
                     totalRecipes++
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
-                for(i in 0..2){
-                    loadImg(images[i], URLs[i])
-                    images[i].setTag(URLs[i]).toString()
-                    nameTVs[i].text = names[i]
+                if(totalRecipes == 0){
+                    for(i in 0..2){
+                        loadImg(images[i], noImg)
+                        images[i].setTag(noImg).toString()
+                        nameTVs[i].text = "No Recipe"
+                    }
+                }else{
+                    for(i in 0..2){
+                        loadImg(images[i], URLs[i])
+                        images[i].setTag(URLs[i]).toString()
+                        nameTVs[i].text = names[i]
+                    }
                 }
             }
             .addOnFailureListener{

@@ -24,7 +24,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var viewBT: Button
     lateinit var preturnBT: Button
     lateinit var changePass: Button
-    lateinit var profilePic: ImageButton
+    lateinit var profilePic: ImageView
     lateinit var displayName: TextView
 
     val db = Firebase.firestore
@@ -57,9 +57,6 @@ class ProfileActivity : AppCompatActivity() {
                 Log.e("FIRABASE", "id: ${it.message}")
             }
 
-
-
-
         upBT.setOnClickListener {
             var intent = Intent(this, CreateRecipeActivity::class.java)
             startActivity(intent)
@@ -80,7 +77,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun loadImg(view: ImageButton, url: String){
+    fun loadImg(view: ImageView, url: String){
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
 
@@ -102,6 +99,10 @@ class ProfileActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun goBack(view: View?){
+        finish()
     }
 
 }

@@ -63,9 +63,19 @@ class SearchRecipes : AppCompatActivity() {
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
                 for(i in 0..2){
+                    /*
                     loadImg(images[i], URLs[i])
                     images[i].setTag(URLs[i]).toString()
-                    nameTVs[i].text = names[i]
+                    nameTVs[i].text = names[i]*/
+                    if (i >= totalRecipes){ // i = 4 -> pos 5, totalRecipes = 4
+                        loadImg(images[i], noImg)
+                        images[i].setTag(noImg).toString()
+                        nameTVs[i].text = "No Recipe"
+                    }else {
+                        loadImg(images[i], URLs[i])
+                        images[i].setTag(URLs[i]).toString()
+                        nameTVs[i].text = names[i]
+                    }
                 }
             }
             .addOnFailureListener{

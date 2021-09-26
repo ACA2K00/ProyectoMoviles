@@ -9,6 +9,7 @@
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_my_recipes.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_password_change.xml" value="0.264" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_recipe.xml" value="0.4" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/activity_recipe_actions.xml" value="0.25416666666666665" />
@@ -19,17 +20,10 @@
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/fragment_home.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/Users/Alejandro/Documents/Uni_7mo_Sem/AppsMoviles/ProyectoFinal/ProyectoFinal/app/src/main/res/menu/nav_menu.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.3541121540921695" />
-        <entry key="app/src/main/res/layout/activity_create_recipe.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.4904891304347826" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25250978698174964" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4904891304347826" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4904891304347826" />
-        <entry key="app/src/main/res/layout/activity_my_recipes.xml" value="0.33177083333333335" />
-        <entry key="app/src/main/res/layout/activity_password_change.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.3229166666666667" />
-        <entry key="app/src/main/res/layout/activity_recipe.xml" value="0.33177083333333335" />
-        <entry key="app/src/main/res/layout/activity_search_recipes.xml" value="0.33177083333333335" />
-        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.27631596408469394" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.24074074074074073" />

@@ -46,8 +46,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     fun login(view: View?){
+        if (emailET.text.toString() == "" || passET.text.toString() == ""){
+            Toast.makeText(this, "Fields must be filled", Toast.LENGTH_SHORT).show()
+            return
+        }
         Firebase.auth.signInWithEmailAndPassword(
             emailET.text.toString(),
             passET.text.toString()).addOnCompleteListener(this){

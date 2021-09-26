@@ -10,7 +10,7 @@
         android:id="@+id/upBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="432dp"
         android:text="Upload Recipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
         android:id="@+id/pReturnBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="37dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="44dp"
         android:text="RETURN"
         app:layout_constraintEnd_toEndOf="@+id/viewBT"
         app:layout_constraintTop_toBottomOf="@+id/viewBT" />
@@ -30,10 +30,42 @@
         android:id="@+id/viewBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="52dp"
         android:text="View my Recipes"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upBT" />
+
+    <Button
+        android:id="@+id/pChangePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:text="Change Password"
+        app:layout_constraintBottom_toTopOf="@+id/upBT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="80dp"
+        android:text="name"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintTop_toTopOf="@+id/profileImage" />
+
+    <ImageButton
+        android:id="@+id/profileImage"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

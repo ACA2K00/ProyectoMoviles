@@ -1,16 +1,33 @@
 package com.emilianosloth.proyectofinal
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.util.concurrent.Executors
 
 class ProfileActivity : AppCompatActivity() {
 
     lateinit var upBT: Button
     lateinit var viewBT: Button
     lateinit var preturnBT: Button
+    lateinit var changePass: Button
+    lateinit var profilePic: ImageButton
+    lateinit var displayName: TextView
+
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +35,30 @@ class ProfileActivity : AppCompatActivity() {
         upBT = findViewById(R.id.upBT)
         viewBT = findViewById(R.id.viewBT)
         preturnBT = findViewById(R.id.pReturnBT)
+        changePass = findViewById(R.id.pChangePass)
+        profilePic = findViewById(R.id.profileImage)
+        displayName = findViewById(R.id.nameTV)
+
+        var url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
+        var name = "default"
+
+        db.collection("usuarios")
+            .whereEqualTo("id", Firebase.auth.currentUser?.email)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents){
+                    loadImg(profilePic, document.getString("imageURL").toString())
+                    displayName.text = document.getString("name").toString()
+                    Log.d("FIRABASE", "id: ${name}")
+                    Log.d("FIRABASE", "id: ${url}")
+                }
+            }
+            .addOnFailureListener{
+                Log.e("FIRABASE", "id: ${it.message}")
+            }
+
+
+
 
         upBT.setOnClickListener {
             var intent = Intent(this, CreateRecipeActivity::class.java)
@@ -31,6 +72,35 @@ class ProfileActivity : AppCompatActivity() {
 
         preturnBT.setOnClickListener {
             finish()
+        }
+
+        changePass.setOnClickListener {
+            var intent = Intent(this, PasswordChangeActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun loadImg(view: ImageButton, url: String){
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+
+        var image: Bitmap? = null
+
+        // Only for Background process (can take time depending on the Internet speed)
+        executor.execute {
+            // Tries to get the image and post it in the ImageView
+            // with the help of Handler
+            try {
+                val `in` = java.net.URL(url).openStream()
+                image = BitmapFactory.decodeStream(`in`)
+                // Only for making changes in UI
+                handler.post {
+                    view.setImageBitmap(image)
+                }
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

@@ -85,4 +85,5 @@
         app:layout_constraintBottom_toTopOf="@+id/recipeImageIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/recipeIngredientsTV" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,82 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SearchRecipes">
 
-    <ImageButton
-        android:id="@+id/sRecipeImg1IB"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="18dp"
-        android:onClick="showRecipe"
-        app:layout_constraintBottom_toTopOf="@+id/sRecipeImg2IB"
-        app:layout_constraintEnd_toStartOf="@+id/sRecipeNameTV1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/sRecipeImg3IB"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="328dp"
-        android:onClick="showRecipe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sRecipeNameTV3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sRecipeImg2IB"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/sRecipeImg2IB"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="23dp"
-        android:onClick="showRecipe"
-        app:layout_constraintBottom_toTopOf="@+id/sRecipeImg3IB"
-        app:layout_constraintEnd_toStartOf="@+id/sRecipeNameTV2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sRecipeImg1IB"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/sRecipeNameTV1"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="92dp"
-        android:text="No Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sRecipeImg1IB" />
-
-    <TextView
-        android:id="@+id/sRecipeNameTV2"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="44dp"
-        android:text="No Name"
-        app:layout_constraintBottom_toBottomOf="@+id/sRecipeImg2IB"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/sRecipeNameTV3"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="92dp"
-        android:text="No Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sRecipeImg3IB" />
-
     <Button
         android:id="@+id/srReturnBT"
         android:layout_width="wrap_content"
@@ -91,26 +15,20 @@
         android:text="RETURN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchRecyclerView" />
 
-    <Button
-        android:id="@+id/sNextBT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="4dp"
-        android:text="Next"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toTopOf="@+id/srReturnBT"
-        app:layout_constraintStart_toEndOf="@+id/srReturnBT" />
-
-    <Button
-        android:id="@+id/sPrevBT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginBottom="4dp"
-        android:text="PREV"
-        app:layout_constraintBottom_toTopOf="@+id/srReturnBT"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

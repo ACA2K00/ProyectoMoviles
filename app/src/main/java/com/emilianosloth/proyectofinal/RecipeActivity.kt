@@ -22,7 +22,8 @@ class RecipeActivity : AppCompatActivity() {
     lateinit var recipeCategory: TextView
     lateinit var recipeImage: ImageView
     lateinit var rReturnBT: Button
-    lateinit var URLStr: String
+    lateinit var recRecipe: String
+    lateinit var recAuthor: String
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +36,15 @@ class RecipeActivity : AppCompatActivity() {
         recipeCategory = findViewById(R.id.categoryTV)
         recipeImage = findViewById(R.id.recipeImageIV)
         rReturnBT = findViewById(R.id.recipeCloseBT)
-        URLStr = intent.getStringExtra("URL").toString()
+        recRecipe = intent.getStringExtra("name").toString()
+        recAuthor = intent.getStringExtra("author").toString()
         displayRecipe()
     }
 
     fun displayRecipe(){
         db.collection("recetas")
-            .whereEqualTo("Image", URLStr)
+            .whereEqualTo("Recipe Name", recRecipe)
+            .whereEqualTo("Autor", recAuthor)
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){

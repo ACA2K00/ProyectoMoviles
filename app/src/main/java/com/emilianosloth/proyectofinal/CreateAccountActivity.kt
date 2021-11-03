@@ -32,6 +32,7 @@ class CreateAccountActivity : AppCompatActivity() {
         passET = findViewById(R.id.CAPassET)
         name = findViewById(R.id.nameET)
         imageURL = findViewById(R.id.profilePicURLET)
+
     }
 
     fun goBack(view: View?){

@@ -26,6 +26,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var changePass: Button
     lateinit var profilePic: ImageView
     lateinit var displayName: TextView
+    lateinit var changePicButton: Button
 
     val db = Firebase.firestore
 
@@ -39,6 +40,7 @@ class ProfileActivity : AppCompatActivity() {
         changePass = findViewById(R.id.pChangePass)
         profilePic = findViewById(R.id.profileImage)
         displayName = findViewById(R.id.nameTV)
+        changePicButton = findViewById(R.id.changePicBT)
 
         var url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
         var name = "default"
@@ -79,6 +81,11 @@ class ProfileActivity : AppCompatActivity() {
 
         changeNameBT.setOnClickListener{
             var intent = Intent(this, NameChangeActivity::class.java)
+            startActivity(intent)
+        }
+
+        changePicButton.setOnClickListener{
+            var intent = Intent(this, pictureChangeActivity::class.java)
             startActivity(intent)
         }
     }

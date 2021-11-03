@@ -10,11 +10,22 @@
         android:id="@+id/upBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:text="Upload Recipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pChangePass" />
+
+    <Button
+        android:id="@+id/viewBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="View my Recipes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upBT" />
 
     <Button
         android:id="@+id/pReturnBT"
@@ -26,24 +37,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewBT"
-        app:layout_constraintVertical_bias="0.093" />
-
-    <Button
-        android:id="@+id/viewBT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="View my Recipes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upBT" />
+        app:layout_constraintVertical_bias="0.275" />
 
     <Button
         android:id="@+id/pChangePass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="204dp"
         android:text="Change Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +63,24 @@
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_height="0dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="56dp"
+        android:layout_marginBottom="133dp"
+        app:layout_constraintBottom_toTopOf="@+id/pChangeNameBT"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/pChangeNameBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="354dp"
+        android:text="Change Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/pChangePass"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

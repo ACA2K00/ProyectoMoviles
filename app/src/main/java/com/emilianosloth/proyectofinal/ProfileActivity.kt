@@ -10,7 +10,6 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.ktx.auth
@@ -21,6 +20,7 @@ import java.util.concurrent.Executors
 class ProfileActivity : AppCompatActivity() {
 
     lateinit var upBT: Button
+    lateinit var changeNameBT: Button
     lateinit var viewBT: Button
     lateinit var preturnBT: Button
     lateinit var changePass: Button
@@ -33,6 +33,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         upBT = findViewById(R.id.upBT)
+        changeNameBT = findViewById(R.id.pChangeNameBT)
         viewBT = findViewById(R.id.viewBT)
         preturnBT = findViewById(R.id.pReturnBT)
         changePass = findViewById(R.id.pChangePass)
@@ -73,6 +74,11 @@ class ProfileActivity : AppCompatActivity() {
 
         changePass.setOnClickListener {
             var intent = Intent(this, PasswordChangeActivity::class.java)
+            startActivity(intent)
+        }
+
+        changeNameBT.setOnClickListener{
+            var intent = Intent(this, NameChangeActivity::class.java)
             startActivity(intent)
         }
     }

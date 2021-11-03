@@ -10,7 +10,6 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.ktx.auth
@@ -21,11 +20,13 @@ import java.util.concurrent.Executors
 class ProfileActivity : AppCompatActivity() {
 
     lateinit var upBT: Button
+    lateinit var changeNameBT: Button
     lateinit var viewBT: Button
     lateinit var preturnBT: Button
     lateinit var changePass: Button
     lateinit var profilePic: ImageView
     lateinit var displayName: TextView
+    lateinit var changePicButton: Button
 
     val db = Firebase.firestore
 
@@ -33,11 +34,13 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         upBT = findViewById(R.id.upBT)
+        changeNameBT = findViewById(R.id.pChangeNameBT)
         viewBT = findViewById(R.id.viewBT)
         preturnBT = findViewById(R.id.pReturnBT)
         changePass = findViewById(R.id.pChangePass)
         profilePic = findViewById(R.id.profileImage)
         displayName = findViewById(R.id.nameTV)
+        changePicButton = findViewById(R.id.changePicBT)
 
         var url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
         var name = "default"
@@ -73,6 +76,16 @@ class ProfileActivity : AppCompatActivity() {
 
         changePass.setOnClickListener {
             var intent = Intent(this, PasswordChangeActivity::class.java)
+            startActivity(intent)
+        }
+
+        changeNameBT.setOnClickListener{
+            var intent = Intent(this, NameChangeActivity::class.java)
+            startActivity(intent)
+        }
+
+        changePicButton.setOnClickListener{
+            var intent = Intent(this, pictureChangeActivity::class.java)
             startActivity(intent)
         }
     }

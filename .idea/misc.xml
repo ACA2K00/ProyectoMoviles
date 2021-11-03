@@ -30,6 +30,10 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25250978698174964" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4904891304347826" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4904891304347826" />
+        <entry key="app/src/main/res/layout/activity_name_change.xml" value="0.36186594202898553" />
+        <entry key="app/src/main/res/layout/activity_password_change.xml" value="0.36186594202898553" />
+        <entry key="app/src/main/res/layout/activity_picture_change.xml" value="0.32508629664483113" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.27939120704075077" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.24074074074074073" />

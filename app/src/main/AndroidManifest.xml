@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
         <activity
+            android:name=".pictureChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NameChangeActivity"
+            android:exported="false" />
+        <activity
             android:name=".PasswordChangeActivity"
             android:exported="true" />
         <activity

@@ -61,8 +61,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:layout_marginBottom="528dp"
         android:text="Registro de Usuario"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/CAImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -90,4 +92,29 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/profilePicURLET"
         app:layout_constraintStart_toStartOf="@+id/profilePicURLET" />
+
+    <ImageView
+        android:id="@+id/CAImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/CATakePicBT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/CATakePicBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="141dp"
+        android:onClick="tomarFoto"
+        android:text="Take Picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CAImageView"
+        app:layout_constraintTop_toBottomOf="@+id/returnBT" />
 </androidx.constraintlayout.widget.ConstraintLayout>

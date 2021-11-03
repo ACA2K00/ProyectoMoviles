@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import java.lang.ref.Reference
 import java.util.concurrent.Executors
 
 class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
@@ -23,6 +25,7 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var names_data: ArrayList<String>
     lateinit var authors_data: ArrayList<String>
     lateinit var urls_data: ArrayList<String>
+    var storageReference = Firebase.storage.reference
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +44,20 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
                 for(document in documents){
                     names_data.add(document.getString("Recipe Name").toString())
                     authors_data.add(document.getString("Autor").toString())
-                    urls_data.add(document.getString("Image").toString())
+                    val imageString = document.getString("Image").toString()
+
+
+                    Log.wtf("IMG", (imageString.substring(imageString.length-4)  == ".jpg").toString())
+                    if(imageString.substring(imageString.length-4) == ".jpg"){
+                        var imageReference = storageReference.child("images/"+imageString)
+                        Log.wtf("IMG", imageReference.toString())
+
+
+                        urls_data.add(imageReference.downloadUrl.toString())
+                    }else{
+                        urls_data.add(document.getString("Image").toString())
+                    }
+
                     Log.wtf("Names", names_data[totalRecipes])
                     totalRecipes++
 

@@ -46,7 +46,7 @@
         android:id="@+id/recipeDescriptionTV"
         android:layout_width="325dp"
         android:layout_height="311dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:hint="Recipe Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         android:id="@+id/recipeCloseBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="4dp"
         android:onClick="goBack"
         android:text="CLOSE"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,5 +85,24 @@
         app:layout_constraintBottom_toTopOf="@+id/recipeImageIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/recipeIngredientsTV" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:onClick="edit"
+        android:text="edit"
+        app:layout_constraintBottom_toTopOf="@+id/recipeCloseBT"
+        app:layout_constraintStart_toStartOf="@+id/recipeCloseBT" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="delete"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/recipeCloseBT"
+        app:layout_constraintStart_toStartOf="@+id/recipeCloseBT" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

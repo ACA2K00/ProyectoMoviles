@@ -1,5 +1,6 @@
 package com.emilianosloth.proyectofinal
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class RecipeActivity : AppCompatActivity() {
     lateinit var rReturnBT: Button
     lateinit var recRecipe: String
     lateinit var recAuthor: String
+    lateinit var idRecipe: String
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +55,8 @@ class RecipeActivity : AppCompatActivity() {
                     recipeIngredients.text = document.getString("Ingredients").toString()
                     recipeInstructions.text = document.getString("Instructions").toString()
                     recipeCategory.text = document.getString("Category").toString()
+
+                    idRecipe = document.id
                     loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
@@ -90,4 +94,18 @@ class RecipeActivity : AppCompatActivity() {
     fun goBack(view: View?){
         finish()
     }
+
+    fun edit(view: View?){
+        var intent = Intent(this, CreateRecipeActivity::class.java)
+        intent.putExtra("ID", idRecipe)
+        intent.putExtra("NAME", recRecipe)
+        intent.putExtra("AUTHOR", recAuthor)
+        startActivity(intent)
+    }
+
+    fun delete(view: View?){
+        db.collection("recetas").document(idRecipe).delete()
+        finish()
+    }
+
 }

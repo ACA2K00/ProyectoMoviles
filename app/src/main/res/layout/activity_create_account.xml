@@ -10,61 +10,61 @@
         android:id="@+id/CAEmailET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="324dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/CAPassET"
+        app:layout_constraintStart_toStartOf="@+id/profilePicURLET"
+        app:layout_constraintTop_toBottomOf="@+id/profilePicURLET"
         tools:ignore="DuplicateClickableBoundsCheck" />
 
     <EditText
         android:id="@+id/CAPassET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginBottom="22dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/CAEmailET"
+        app:layout_constraintBottom_toTopOf="@+id/CAImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CAEmailET" />
 
     <Button
         android:id="@+id/CACreateBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="11dp"
         android:onClick="registro"
         android:text="Create Account"
-        app:layout_constraintEnd_toEndOf="@+id/CAPassET"
-        app:layout_constraintTop_toBottomOf="@+id/CAPassET" />
+        app:layout_constraintBottom_toTopOf="@+id/returnBT"
+        app:layout_constraintStart_toEndOf="@+id/CAImageView" />
 
     <Button
         android:id="@+id/returnBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="49dp"
         android:onClick="goBack"
         android:text="RETURN"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CACreateBT"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintStart_toStartOf="@+id/CACreateBT" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="528dp"
+        android:layout_marginBottom="52dp"
         android:text="Registro de Usuario"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/CAImageView"
+        app:layout_constraintBottom_toTopOf="@+id/nameET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,7 +79,8 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/CAEmailET"
-        app:layout_constraintStart_toStartOf="@+id/CAEmailET" />
+        app:layout_constraintStart_toStartOf="@+id/nameET"
+        app:layout_constraintTop_toBottomOf="@+id/nameET" />
 
     <EditText
         android:id="@+id/nameET"
@@ -91,30 +92,32 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/profilePicURLET"
-        app:layout_constraintStart_toStartOf="@+id/profilePicURLET" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/CAImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="175dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/CATakePicBT"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/CAPassET"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/CATakePicBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="141dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="26dp"
         android:onClick="tomarFoto"
         android:text="Take Picture"
+        app:layout_constraintBottom_toTopOf="@+id/CACreateBT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CAImageView"
-        app:layout_constraintTop_toBottomOf="@+id/returnBT" />
+        app:layout_constraintStart_toEndOf="@+id/CAImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

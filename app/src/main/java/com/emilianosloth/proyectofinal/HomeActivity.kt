@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.util.concurrent.Executors
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
@@ -28,6 +29,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var names_data: ArrayList<String>
     lateinit var authors_data: ArrayList<String>
     lateinit var urls_data: ArrayList<String>
+    var storageReference = Firebase.storage.reference
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +50,19 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 for(document in documents){
                     names_data.add(document.getString("Recipe Name").toString())
                     authors_data.add(document.getString("Autor").toString())
+//                    var imageString = document.getString("Image").toString()
+//
+//                    if(imageString.substring(imageString.length-4) == ".jpg"){
+//                        var imageReference = storageReference.child("images/"+imageString)
+//                        Log.wtf("IMG", imageReference.toString())
+//
+//
+//                        urls_data.add("https://firebasestorage.googleapis.com/v0/b/proyectofinalmoviles-e98e6.appspot.com/o/images%2Fmolletes.jpg?alt=media&token=171c0d48-f92d-446f-b50b-7a258411d7a8")
+//                    }else{
+//                        urls_data.add(document.getString("Image").toString())
+//                    }
                     urls_data.add(document.getString("Image").toString())
+
                     Log.wtf("Names", names_data[totalRecipes])
                     totalRecipes++
 

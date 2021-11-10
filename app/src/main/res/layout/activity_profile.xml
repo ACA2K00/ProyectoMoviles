@@ -10,46 +10,50 @@
         android:id="@+id/upBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="19dp"
         android:text="Upload Recipe"
-        app:layout_constraintBottom_toTopOf="@+id/viewBT"
-        app:layout_constraintEnd_toEndOf="@+id/pChangePass"
-        app:layout_constraintTop_toBottomOf="@+id/pChangePass" />
+        app:layout_constraintBottom_toTopOf="@+id/pChangePass"
+        app:layout_constraintEnd_toStartOf="@+id/pChangeNameBT"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <Button
         android:id="@+id/viewBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="105dp"
         android:text="View my Recipes"
         app:layout_constraintBottom_toTopOf="@+id/pReturnBT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upBT" />
+        app:layout_constraintTop_toBottomOf="@+id/pChangePass" />
 
     <Button
         android:id="@+id/pReturnBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="37dp"
         android:layout_marginBottom="56dp"
         android:onClick="goBack"
         android:text="RETURN"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/viewBT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewBT" />
 
     <Button
         android:id="@+id/pChangePass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="29dp"
         android:text="Change Password"
-        app:layout_constraintBottom_toTopOf="@+id/upBT"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/viewBT"
+        app:layout_constraintEnd_toStartOf="@+id/changePicBT"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pChangeNameBT" />
+        app:layout_constraintTop_toBottomOf="@+id/upBT" />
 
     <TextView
         android:id="@+id/nameTV"
@@ -70,8 +74,8 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="37dp"
-        android:layout_marginBottom="61dp"
-        app:layout_constraintBottom_toTopOf="@+id/changePicBT"
+        android:layout_marginBottom="133dp"
+        app:layout_constraintBottom_toTopOf="@+id/upBT"
         app:layout_constraintEnd_toStartOf="@+id/nameTV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,22 +85,19 @@
         android:id="@+id/pChangeNameBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="24dp"
         android:text="Change Name"
-        app:layout_constraintBottom_toTopOf="@+id/pChangePass"
-        app:layout_constraintEnd_toEndOf="@+id/changePicBT"
-        app:layout_constraintTop_toBottomOf="@+id/changePicBT" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/upBT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/upBT" />
 
     <Button
         android:id="@+id/changePicBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="5dp"
         android:text="Change Picture"
-        app:layout_constraintBottom_toTopOf="@+id/pChangeNameBT"
+        app:layout_constraintBaseline_toBaselineOf="@+id/pChangePass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+        app:layout_constraintStart_toEndOf="@+id/pChangePass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

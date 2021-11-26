@@ -109,7 +109,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(row: View) {
         val position = recyclerView.getChildLayoutPosition(row)
-        val intent = Intent(this, RecipeActivity::class.java)
+        val intent = Intent(this, PublicRecipeActivity::class.java)
         intent.putExtra("author", authors_data[position])
         intent.putExtra("name", names_data[position])
         startActivity(intent)

@@ -93,9 +93,17 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(row: View) {
         val position = recyclerView.getChildLayoutPosition(row)
-        val intent = Intent(this, RecipeActivity::class.java)
-        intent.putExtra("author", authors_data[position])
-        intent.putExtra("name", names_data[position])
-        startActivity(intent)
+        if(userSTR == Firebase.auth.currentUser?.email){
+            val intent = Intent(this, RecipeActivity::class.java)
+            intent.putExtra("author", authors_data[position])
+            intent.putExtra("name", names_data[position])
+            startActivity(intent)
+        }else{
+            val intent = Intent(this, PublicRecipeActivity::class.java)
+            intent.putExtra("author", authors_data[position])
+            intent.putExtra("name", names_data[position])
+            startActivity(intent)
+        }
+
     }
 }

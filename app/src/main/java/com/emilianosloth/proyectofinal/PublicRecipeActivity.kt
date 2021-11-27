@@ -27,6 +27,7 @@ class PublicRecipeActivity : AppCompatActivity() {
     lateinit var recipeCategory: TextView
     lateinit var recipeImage: ImageView
     lateinit var rReturnBT: Button
+    lateinit var checkProfileBT: Button
     lateinit var recRecipe: String
     lateinit var recAuthor: String
     lateinit var idRecipe: String
@@ -44,9 +45,16 @@ class PublicRecipeActivity : AppCompatActivity() {
         recipeCategory = findViewById(R.id.pCategoryTV)
         recipeImage = findViewById(R.id.pRecipeImageIV)
         rReturnBT = findViewById(R.id.pRecipeCloseBT)
+        checkProfileBT = findViewById(R.id.viewPrfBT)
         recRecipe = intent.getStringExtra("name").toString()
         recAuthor = intent.getStringExtra("author").toString()
         displayRecipe()
+
+        checkProfileBT.setOnClickListener{
+            var intent = Intent(this, PublicUserActivity::class.java)
+            intent.putExtra("Author", recAuthor)
+            startActivity(intent)
+        }
     }
 
     fun displayRecipe(){
@@ -105,19 +113,6 @@ class PublicRecipeActivity : AppCompatActivity() {
     }
 
     fun goBack(view: View?){
-        finish()
-    }
-
-    fun edit(view: View?){
-        var intent = Intent(this, CreateRecipeActivity::class.java)
-        intent.putExtra("ID", idRecipe)
-        intent.putExtra("NAME", recRecipe)
-        intent.putExtra("AUTHOR", recAuthor)
-        startActivity(intent)
-    }
-
-    fun delete(view: View?){
-        db.collection("recetas").document(idRecipe).delete()
         finish()
     }
 

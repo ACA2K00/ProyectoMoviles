@@ -44,8 +44,8 @@
 
     <TextView
         android:id="@+id/pRecipeDescriptionTV"
-        android:layout_width="325dp"
-        android:layout_height="311dp"
+        android:layout_width="323dp"
+        android:layout_height="271dp"
         android:layout_marginTop="44dp"
         android:hint="Recipe Description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,5 +85,17 @@
         app:layout_constraintBottom_toTopOf="@+id/pRecipeImageIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/pRecipeIngredientsTV" />
+
+    <Button
+        android:id="@+id/viewPrfBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="View Author Profile"
+        app:layout_constraintBottom_toTopOf="@+id/pRecipeCloseBT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pRecipeDescriptionTV"
+        app:layout_constraintVertical_bias="0.851" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

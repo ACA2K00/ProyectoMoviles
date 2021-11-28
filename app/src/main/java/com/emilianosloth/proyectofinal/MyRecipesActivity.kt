@@ -49,8 +49,6 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
                     authors_data.add(document.getString("Autor").toString())
                     val imageString = document.getString("Image").toString()
 
-
-
                     if(imageString.substring(imageString.length-4) == ".jpg"){
                         var imageReference = storageReference.child("images/"+imageString)
                         Log.wtf("IMG", imageReference.toString())

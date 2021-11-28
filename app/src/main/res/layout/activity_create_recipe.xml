@@ -39,81 +39,73 @@
         android:id="@+id/recipeInstructionsET"
         android:layout_width="265dp"
         android:layout_height="74dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="172dp"
         android:ems="10"
         android:hint="Recipe Instructions"
         android:inputType="textPersonName"
         android:maxLines="150"
         app:layout_constraintBottom_toTopOf="@+id/recipeUploadBT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImageET"
-        app:layout_constraintVertical_bias="0.481" />
-
-    <EditText
-        android:id="@+id/recipeImageET"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="27dp"
-        android:ems="10"
-        android:hint="Recipe Image (Insert URL)"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.204"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeIngredientsET" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/recipeUploadBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
         android:text="UPLOAD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/recipeCancelBT"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/recipeCancelBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="56dp"
         android:onClick="goBack"
         android:text="CANCEL"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.795"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/recipeCancelBT"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImageET"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/recipeInstructionsET"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/choosePicBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="29dp"
-        android:onClick="takePicture"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="56dp"
+        android:onClick="seleccionarImagen"
         android:text="Take"
-        app:layout_constraintBaseline_toBaselineOf="@+id/recipeImageET"
+        app:layout_constraintBottom_toTopOf="@+id/recipeInstructionsET"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recipeImageET" />
+        app:layout_constraintEnd_toStartOf="@+id/previeImageView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/previeImageView"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="83dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/recipeInstructionsET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/choosePicBT"
+        app:layout_constraintTop_toBottomOf="@+id/recipeIngredientsET"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

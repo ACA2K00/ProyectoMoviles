@@ -3,6 +3,7 @@ package com.emilianosloth.proyectofinal
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -12,9 +13,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 import java.util.concurrent.Executors
 
 class ProfileActivity : AppCompatActivity() {
@@ -26,8 +31,12 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var changePass: Button
     lateinit var profilePic: ImageView
     lateinit var displayName: TextView
-    lateinit var displayUser: TextView
     lateinit var changePicButton: Button
+
+    var defaulturl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
+
+
+
 
     val db = Firebase.firestore
 
@@ -41,20 +50,19 @@ class ProfileActivity : AppCompatActivity() {
         changePass = findViewById(R.id.pChangePass)
         profilePic = findViewById(R.id.profileImage)
         displayName = findViewById(R.id.nameTV)
-        displayUser = findViewById(R.id.userMailTV)
         changePicButton = findViewById(R.id.changePicBT)
 
         var url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
         var name = "default"
+
+        leerImagen();
 
         db.collection("usuarios")
             .whereEqualTo("id", Firebase.auth.currentUser?.email)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents){
-                    loadImg(profilePic, document.getString("imageURL").toString())
                     displayName.text = document.getString("name").toString()
-                    displayUser.text = document.getString("id").toString()
                     Log.d("FIRABASE", "id: ${name}")
                     Log.d("FIRABASE", "id: ${url}")
                 }
@@ -70,7 +78,6 @@ class ProfileActivity : AppCompatActivity() {
 
         viewBT.setOnClickListener {
             var intent = Intent(this, MyRecipesActivity::class.java)
-            intent.putExtra("User", displayUser.getText().toString())
             startActivity(intent)
         }
 
@@ -92,6 +99,24 @@ class ProfileActivity : AppCompatActivity() {
             var intent = Intent(this, pictureChangeActivity::class.java)
             startActivity(intent)
         }
+
+
+    }
+
+    fun leerImagen(){
+        val userIdentifier = Firebase.auth.currentUser?.email.toString()
+        val storageReference = FirebaseStorage.getInstance().getReference("imagenesPerfiles/$userIdentifier")
+        val localfile = File.createTempFile("imagenTemporal", "jpg")
+        storageReference.getFile(localfile)
+            .addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                profilePic.setImageBitmap(bitmap)
+                Log.d("FIREBASE Perfil", "Correctamente cargado")
+            }
+            .addOnFailureListener {
+                Log.e("FIREBASE Perfil", "exception: ${it.message}")
+                loadImg(profilePic, defaulturl)
+            }
     }
 
     fun loadImg(view: ImageView, url: String){

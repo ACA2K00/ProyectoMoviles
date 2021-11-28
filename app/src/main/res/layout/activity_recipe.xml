@@ -90,21 +90,16 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="44dp"
         android:onClick="edit"
         android:text="edit"
         app:layout_constraintBottom_toTopOf="@+id/recipeCloseBT"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeDescriptionTV"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="@+id/recipeCloseBT" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="48dp"
         android:onClick="delete"
         android:text="Delete"
         app:layout_constraintBottom_toTopOf="@+id/recipeCloseBT"

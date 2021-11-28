@@ -25,15 +25,12 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var names_data: ArrayList<String>
     lateinit var authors_data: ArrayList<String>
     lateinit var urls_data: ArrayList<String>
-    lateinit var userSTR: String
     var storageReference = Firebase.storage.reference
 
     val db = Firebase.firestore
-    //Firebase.auth.currentUser?.email
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_recipes)
-        userSTR = intent.getStringExtra("User").toString()
         recyclerView = findViewById(R.id.myrecRecyclerView)
         names_data = ArrayList()
         authors_data = ArrayList()
@@ -41,7 +38,7 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
         var totalRecipes = 0
 
         db.collection("recetas")
-            .whereEqualTo("Autor", userSTR)
+            .whereEqualTo("Autor", Firebase.auth.currentUser?.email)
             .get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
@@ -54,6 +51,8 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
                     if(imageString.substring(imageString.length-4) == ".jpg"){
                         var imageReference = storageReference.child("images/"+imageString)
                         Log.wtf("IMG", imageReference.toString())
+
+
                         urls_data.add("https://firebasestorage.googleapis.com/v0/b/proyectofinalmoviles-e98e6.appspot.com/o/images%2Fmolletes.jpg?alt=media&token=171c0d48-f92d-446f-b50b-7a258411d7a8")
                     }else{
                         urls_data.add(document.getString("Image").toString())
@@ -93,17 +92,9 @@ class MyRecipesActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(row: View) {
         val position = recyclerView.getChildLayoutPosition(row)
-        if(userSTR == Firebase.auth.currentUser?.email){
-            val intent = Intent(this, RecipeActivity::class.java)
-            intent.putExtra("author", authors_data[position])
-            intent.putExtra("name", names_data[position])
-            startActivity(intent)
-        }else{
-            val intent = Intent(this, PublicRecipeActivity::class.java)
-            intent.putExtra("author", authors_data[position])
-            intent.putExtra("name", names_data[position])
-            startActivity(intent)
-        }
-
+        val intent = Intent(this, RecipeActivity::class.java)
+        intent.putExtra("author", authors_data[position])
+        intent.putExtra("name", names_data[position])
+        startActivity(intent)
     }
 }

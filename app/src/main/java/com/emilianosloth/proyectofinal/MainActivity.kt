@@ -22,7 +22,6 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
-import com.google.android.gms.common.SignInButton
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.ktx.oAuthCredential
@@ -33,10 +32,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var loginBT: Button
     lateinit var emailET: EditText
     lateinit var passET: EditText
-    lateinit var googleLogBT : SignInButton
+    lateinit var googleLogBT : Button
     lateinit var facebookLogBT :LoginButton
     private val RC_SIGN_IN = 89
-
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private val callbackManager = CallbackManager.Factory.create();
@@ -51,21 +49,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         createBT = findViewById(R.id.mainCreateBT)
         loginBT = findViewById(R.id.mainLoginBT)
         emailET = findViewById(R.id.mainMailBT)
         passET  = findViewById(R.id.mainPassET)
-        googleLogBT = findViewById(R.id.googleLoginBT);
-        googleLogBT.setSize(SignInButton.SIZE_STANDARD);
+        googleLogBT = findViewById(R.id.googleLoginBT)
         facebookLogBT = findViewById(R.id.facebookLoginBT)
 
         facebookLogBT.setReadPermissions(Arrays.asList(EMAIL))
-
-        val accessToken = AccessToken.getCurrentAccessToken();
-        val isLoggedIn = (accessToken != null && accessToken.isExpired)
-
-
 
         createBT.setOnClickListener {
             var intent = Intent(this, CreateAccountActivity::class.java)
@@ -101,7 +92,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
-
         }
 
 

@@ -15,7 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.login.LoginManager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -105,13 +104,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     fun logout(view: View?){
         Firebase.auth.signOut()
-        LoginManager.getInstance().logOut();
         finish()
     }
 
     override fun onClick(row: View) {
         val position = recyclerView.getChildLayoutPosition(row)
-        val intent = Intent(this, RecipeActivity::class.java)
+        val intent = Intent(this, PublicRecipeActivity::class.java)
         intent.putExtra("author", authors_data[position])
         intent.putExtra("name", names_data[position])
         startActivity(intent)

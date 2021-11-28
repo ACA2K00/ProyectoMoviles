@@ -9,13 +9,17 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.util.concurrent.Executors
 
-class RecipeActivity : AppCompatActivity() {
+class PublicRecipeActivity : AppCompatActivity() {
+
     lateinit var recipeName: TextView
     lateinit var authorName: TextView
     lateinit var recipeIngredients: TextView
@@ -23,6 +27,7 @@ class RecipeActivity : AppCompatActivity() {
     lateinit var recipeCategory: TextView
     lateinit var recipeImage: ImageView
     lateinit var rReturnBT: Button
+    lateinit var checkProfileBT: Button
     lateinit var recRecipe: String
     lateinit var recAuthor: String
     lateinit var idRecipe: String
@@ -32,17 +37,24 @@ class RecipeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recipe)
-        recipeName = findViewById(R.id.recipeNameTV)
-        authorName = findViewById(R.id.recipeAuthorTV)
-        recipeIngredients = findViewById(R.id.recipeIngredientsTV)
-        recipeInstructions = findViewById(R.id.recipeDescriptionTV)
-        recipeCategory = findViewById(R.id.categoryTV)
-        recipeImage = findViewById(R.id.recipeImageIV)
-        rReturnBT = findViewById(R.id.recipeCloseBT)
+        setContentView(R.layout.activity_public_recipe)
+        recipeName = findViewById(R.id.pRecipeNameTV)
+        authorName = findViewById(R.id.pRecipeAuthorTV)
+        recipeIngredients = findViewById(R.id.pRecipeIngredientsTV)
+        recipeInstructions = findViewById(R.id.pRecipeDescriptionTV)
+        recipeCategory = findViewById(R.id.pCategoryTV)
+        recipeImage = findViewById(R.id.pRecipeImageIV)
+        rReturnBT = findViewById(R.id.pRecipeCloseBT)
+        checkProfileBT = findViewById(R.id.viewPrfBT)
         recRecipe = intent.getStringExtra("name").toString()
         recAuthor = intent.getStringExtra("author").toString()
         displayRecipe()
+
+        checkProfileBT.setOnClickListener{
+            var intent = Intent(this, PublicUserActivity::class.java)
+            intent.putExtra("Author", recAuthor)
+            startActivity(intent)
+        }
     }
 
     fun displayRecipe(){
@@ -101,19 +113,6 @@ class RecipeActivity : AppCompatActivity() {
     }
 
     fun goBack(view: View?){
-        finish()
-    }
-
-    fun edit(view: View?){
-        var intent = Intent(this, CreateRecipeActivity::class.java)
-        intent.putExtra("ID", idRecipe)
-        intent.putExtra("NAME", recRecipe)
-        intent.putExtra("AUTHOR", recAuthor)
-        startActivity(intent)
-    }
-
-    fun delete(view: View?){
-        db.collection("recetas").document(idRecipe).delete()
         finish()
     }
 

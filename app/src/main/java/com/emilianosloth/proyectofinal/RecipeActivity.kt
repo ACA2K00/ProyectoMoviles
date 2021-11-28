@@ -12,7 +12,9 @@ import android.view.View
 import android.widget.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import java.io.File
 import java.util.concurrent.Executors
 
 class RecipeActivity : AppCompatActivity() {
@@ -30,6 +32,8 @@ class RecipeActivity : AppCompatActivity() {
     val db = Firebase.firestore
     var storageReference = Firebase.storage.reference
 
+    var defaulturl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
@@ -45,6 +49,8 @@ class RecipeActivity : AppCompatActivity() {
         displayRecipe()
     }
 
+
+
     fun displayRecipe(){
         db.collection("recetas")
             .whereEqualTo("Recipe Name", recRecipe)
@@ -57,15 +63,18 @@ class RecipeActivity : AppCompatActivity() {
                     recipeIngredients.text = document.getString("Ingredients").toString()
                     recipeInstructions.text = document.getString("Instructions").toString()
                     recipeCategory.text = document.getString("Category").toString()
-                    var imageString = document.getString("Image").toString()
+                    leerImagen(document.id)
                     idRecipe = document.id
 
+                    /*
                     if(imageString.substring(imageString.length-4) == ".jpg"){
                         var imageReference = storageReference.child("images/"+imageString)
                         loadImg(recipeImage, "https://firebasestorage.googleapis.com/v0/b/proyectofinalmoviles-e98e6.appspot.com/o/images%2Fmolletes.jpg?alt=media&token=171c0d48-f92d-446f-b50b-7a258411d7a8")
                     }else{
                         loadImg(recipeImage, document.getString("Image").toString())
                     }
+                    */
+
 //                    loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
                 }
@@ -73,6 +82,21 @@ class RecipeActivity : AppCompatActivity() {
             .addOnFailureListener{
                 Log.d("FIREBASE", "EXCEPTION: ${it.message}")
                 Toast.makeText(this, "ERROR: COULDN'T LOAD RECIPES", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun leerImagen(nombreImagen : String){
+        val storageReference = FirebaseStorage.getInstance().getReference("images/$nombreImagen")
+        val localfile = File.createTempFile("imagenTemporal", "jpg")
+        storageReference.getFile(localfile)
+            .addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                recipeImage.setImageBitmap(bitmap)
+                Log.d("FIREBASE RECETA IMAGEN", nombreImagen)
+            }
+            .addOnFailureListener {
+                loadImg(recipeImage, defaulturl)
+                Log.e("FIREBASE Platillo", "exception: ${it.message}")
             }
     }
 

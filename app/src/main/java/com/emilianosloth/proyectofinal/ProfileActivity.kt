@@ -26,7 +26,6 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var changePass: Button
     lateinit var profilePic: ImageView
     lateinit var displayName: TextView
-    lateinit var displayUser: TextView
     lateinit var changePicButton: Button
 
     val db = Firebase.firestore
@@ -41,7 +40,6 @@ class ProfileActivity : AppCompatActivity() {
         changePass = findViewById(R.id.pChangePass)
         profilePic = findViewById(R.id.profileImage)
         displayName = findViewById(R.id.nameTV)
-        displayUser = findViewById(R.id.userMailTV)
         changePicButton = findViewById(R.id.changePicBT)
 
         var url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
@@ -54,7 +52,6 @@ class ProfileActivity : AppCompatActivity() {
                 for (document in documents){
                     loadImg(profilePic, document.getString("imageURL").toString())
                     displayName.text = document.getString("name").toString()
-                    displayUser.text = document.getString("id").toString()
                     Log.d("FIRABASE", "id: ${name}")
                     Log.d("FIRABASE", "id: ${url}")
                 }
@@ -70,7 +67,6 @@ class ProfileActivity : AppCompatActivity() {
 
         viewBT.setOnClickListener {
             var intent = Intent(this, MyRecipesActivity::class.java)
-            intent.putExtra("User", displayUser.getText().toString())
             startActivity(intent)
         }
 

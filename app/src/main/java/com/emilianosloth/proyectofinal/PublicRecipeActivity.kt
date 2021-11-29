@@ -76,22 +76,23 @@ class PublicRecipeActivity : AppCompatActivity() {
                     recipeIngredients.text = document.getString("Ingredients").toString()
                     recipeInstructions = document.getString("Instructions").toString()
                     recipeCategory.text = document.getString("Category").toString()
-                    //var imageString = document.getString("Image").toString()
+                    var imageString = document.getString("Image").toString()
                     leerImagen(document.id)
                     idRecipe = document.id
-/*
+
+                    /*
                     if(imageString.substring(imageString.length-4) == ".jpg"){
                         var imageReference = storageReference.child("images/"+imageString)
                         loadImg(recipeImage, "https://firebasestorage.googleapis.com/v0/b/proyectofinalmoviles-e98e6.appspot.com/o/images%2Fmolletes.jpg?alt=media&token=171c0d48-f92d-446f-b50b-7a258411d7a8")
                     }else{
                         loadImg(recipeImage, document.getString("Image").toString())
                     }
-//                    loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
-                    */
+                     */
+
 
                     steps_list = enlist(recipeInstructions, "-")
-                    val adapter = StepAdapter(steps_list)
+                    val adapter = StepAdapter(steps_list, imageString)
                     var llm = LinearLayoutManager(this)
                     llm.orientation = LinearLayoutManager.VERTICAL
 

@@ -93,8 +93,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pStepsRV"
-        android:layout_width="409dp"
-        android:layout_height="337dp"
+        android:layout_width="412dp"
+        android:layout_height="296dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"

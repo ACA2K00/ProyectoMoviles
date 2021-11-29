@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.concurrent.Executors
 
-class StepAdapter(private var steps: List<String>) :
+class StepAdapter(private var steps: List<String>, private var stepImg: String) :
     RecyclerView.Adapter<StepAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -35,7 +35,7 @@ class StepAdapter(private var steps: List<String>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.stepText.text = steps[position]
-        //loadImg(holder.image, images[position])
+        loadImg(holder.image, "https://firebasestorage.googleapis.com/v0/b/proyectofinalmoviles-e98e6.appspot.com/o/images%2Fmolletes.jpg?alt=media&token=171c0d48-f92d-446f-b50b-7a258411d7a8")
     }
 
     override fun getItemCount(): Int {

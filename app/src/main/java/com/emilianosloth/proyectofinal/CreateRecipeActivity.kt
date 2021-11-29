@@ -33,7 +33,6 @@ class CreateRecipeActivity : AppCompatActivity() {
     lateinit var imagenUri: Uri
     var imagenEmpty : Boolean = true
     lateinit var imagen: ImageView
-    lateinit var registrarImagenBT : Button
 
     lateinit var steps: String
     lateinit var addBT: Button
@@ -45,6 +44,7 @@ class CreateRecipeActivity : AppCompatActivity() {
 
         val image = result.data?.extras?.get("data") as Bitmap
 
+
         val storageReference = storage.reference
         val imageReference = storageReference.child(recipeName.text.toString()+".jpg")
         val imagesReference = storageReference.child("images/"+recipeName.text.toString()+".jpg")
@@ -53,12 +53,16 @@ class CreateRecipeActivity : AppCompatActivity() {
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
+
         var uploadTask = imagesReference.putBytes(data)
         uploadTask.addOnFailureListener{
             Log.wtf("Falla", "fallo")
         }.addOnSuccessListener { taskSnapshot ->
             Log.wtf("Success", "Logrado")
         }
+
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,6 +137,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                     "Recipe Name" to recipeName.text.toString(),
                     "Ingredients" to enlist(recipeIngredients.text.toString(), ","),
                     "Instructions" to steps,
+                    "Image" to recipeName.text.toString()+".jpg",
                     "Category" to spinner.getTag().toString()
                 )
                 if(isEditing){
@@ -149,7 +154,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                             Toast.makeText(this, "ERROR: COULDN'T UPLOAD RECIPE", Toast.LENGTH_SHORT).show()
                         }
                 }
-
 
                 finish()
             }

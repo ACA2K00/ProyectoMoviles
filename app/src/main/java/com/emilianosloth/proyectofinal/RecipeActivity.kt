@@ -65,6 +65,7 @@ class RecipeActivity : AppCompatActivity() {
                     recipeIngredients.text = document.getString("Ingredients").toString()
                     recipeInstructions = document.getString("Instructions").toString()
                     recipeCategory.text = document.getString("Category").toString()
+                    var imageString = document.getString("Image").toString()
                     leerImagen(document.id)
                     idRecipe = document.id
 
@@ -75,13 +76,11 @@ class RecipeActivity : AppCompatActivity() {
                     }else{
                         loadImg(recipeImage, document.getString("Image").toString())
                     }
-                    */
-
-                //  loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
+                     */
 
                     steps_list = enlist(recipeInstructions, "-")
-                    val adapter = StepAdapter(steps_list)
+                    val adapter = StepAdapter(steps_list, imageString)
                     var llm = LinearLayoutManager(this)
                     llm.orientation = LinearLayoutManager.VERTICAL
 

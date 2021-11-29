@@ -104,8 +104,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stepsRV"
-        android:layout_width="409dp"
-        android:layout_height="337dp"
+        android:layout_width="415dp"
+        android:layout_height="296dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

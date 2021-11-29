@@ -95,7 +95,6 @@ class RecipeActivity : AppCompatActivity() {
                 Toast.makeText(this, "ERROR: COULDN'T LOAD RECIPES", Toast.LENGTH_SHORT).show()
             }
     }
-    //new commit
 
     fun leerImagen(nombreImagen : String){
         val storageReference = FirebaseStorage.getInstance().getReference("images/$nombreImagen")

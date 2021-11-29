@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -23,7 +25,6 @@ class PublicRecipeActivity : AppCompatActivity() {
     lateinit var recipeName: TextView
     lateinit var authorName: TextView
     lateinit var recipeIngredients: TextView
-    lateinit var recipeInstructions: TextView
     lateinit var recipeCategory: TextView
     lateinit var recipeImage: ImageView
     lateinit var rReturnBT: Button
@@ -31,6 +32,9 @@ class PublicRecipeActivity : AppCompatActivity() {
     lateinit var recRecipe: String
     lateinit var recAuthor: String
     lateinit var idRecipe: String
+    lateinit var recyclerView: RecyclerView
+    lateinit var steps_list: List<String>
+    lateinit var recipeInstructions: String
 
     val db = Firebase.firestore
     var storageReference = Firebase.storage.reference
@@ -41,13 +45,13 @@ class PublicRecipeActivity : AppCompatActivity() {
         recipeName = findViewById(R.id.pRecipeNameTV)
         authorName = findViewById(R.id.pRecipeAuthorTV)
         recipeIngredients = findViewById(R.id.pRecipeIngredientsTV)
-        recipeInstructions = findViewById(R.id.pRecipeDescriptionTV)
         recipeCategory = findViewById(R.id.pCategoryTV)
         recipeImage = findViewById(R.id.pRecipeImageIV)
         rReturnBT = findViewById(R.id.pRecipeCloseBT)
         checkProfileBT = findViewById(R.id.viewPrfBT)
         recRecipe = intent.getStringExtra("name").toString()
         recAuthor = intent.getStringExtra("author").toString()
+        recyclerView = findViewById(R.id.pStepsRV)
         displayRecipe()
 
         checkProfileBT.setOnClickListener{
@@ -67,7 +71,7 @@ class PublicRecipeActivity : AppCompatActivity() {
                     recipeName.text = document.getString("Recipe Name").toString()
                     authorName.text = "By: " + document.getString("Autor").toString()
                     recipeIngredients.text = document.getString("Ingredients").toString()
-                    recipeInstructions.text = document.getString("Instructions").toString()
+                    recipeInstructions = document.getString("Instructions").toString()
                     recipeCategory.text = document.getString("Category").toString()
                     var imageString = document.getString("Image").toString()
                     idRecipe = document.id
@@ -80,6 +84,16 @@ class PublicRecipeActivity : AppCompatActivity() {
                     }
 //                    loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
+
+                    steps_list = enlist(recipeInstructions, "-")
+                    val adapter = StepAdapter(steps_list)
+                    var llm = LinearLayoutManager(this)
+                    llm.orientation = LinearLayoutManager.VERTICAL
+
+                    // setup the recycler view
+                    recyclerView.layoutManager = llm
+                    recyclerView.adapter = adapter
+
                 }
             }
             .addOnFailureListener{
@@ -114,6 +128,10 @@ class PublicRecipeActivity : AppCompatActivity() {
 
     fun goBack(view: View?){
         finish()
+    }
+
+    fun enlist(inStr: String, del: String): List<String> {
+        return inStr.split(del)
     }
 
 }

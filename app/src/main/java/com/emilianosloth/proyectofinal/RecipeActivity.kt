@@ -10,6 +10,8 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -21,13 +23,15 @@ class RecipeActivity : AppCompatActivity() {
     lateinit var recipeName: TextView
     lateinit var authorName: TextView
     lateinit var recipeIngredients: TextView
-    lateinit var recipeInstructions: TextView
     lateinit var recipeCategory: TextView
     lateinit var recipeImage: ImageView
     lateinit var rReturnBT: Button
     lateinit var recRecipe: String
     lateinit var recAuthor: String
     lateinit var idRecipe: String
+    lateinit var recyclerView: RecyclerView
+    lateinit var steps_list: List<String>
+    lateinit var recipeInstructions: String
 
     val db = Firebase.firestore
     var storageReference = Firebase.storage.reference
@@ -37,10 +41,10 @@ class RecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
+        recyclerView = findViewById(R.id.stepsRV)
         recipeName = findViewById(R.id.recipeNameTV)
         authorName = findViewById(R.id.recipeAuthorTV)
         recipeIngredients = findViewById(R.id.recipeIngredientsTV)
-        recipeInstructions = findViewById(R.id.recipeDescriptionTV)
         recipeCategory = findViewById(R.id.categoryTV)
         recipeImage = findViewById(R.id.recipeImageIV)
         rReturnBT = findViewById(R.id.recipeCloseBT)
@@ -48,8 +52,6 @@ class RecipeActivity : AppCompatActivity() {
         recAuthor = intent.getStringExtra("author").toString()
         displayRecipe()
     }
-
-
 
     fun displayRecipe(){
         db.collection("recetas")
@@ -61,7 +63,7 @@ class RecipeActivity : AppCompatActivity() {
                     recipeName.text = document.getString("Recipe Name").toString()
                     authorName.text = "By: " + document.getString("Autor").toString()
                     recipeIngredients.text = document.getString("Ingredients").toString()
-                    recipeInstructions.text = document.getString("Instructions").toString()
+                    recipeInstructions = document.getString("Instructions").toString()
                     recipeCategory.text = document.getString("Category").toString()
                     leerImagen(document.id)
                     idRecipe = document.id
@@ -75,8 +77,17 @@ class RecipeActivity : AppCompatActivity() {
                     }
                     */
 
-//                    loadImg(recipeImage, document.getString("Image").toString())
+                //  loadImg(recipeImage, document.getString("Image").toString())
                     Log.d("FIRESTORE", "${document.id} ${document.data}")
+
+                    steps_list = enlist(recipeInstructions, "-")
+                    val adapter = StepAdapter(steps_list)
+                    var llm = LinearLayoutManager(this)
+                    llm.orientation = LinearLayoutManager.VERTICAL
+
+                    // setup the recycler view
+                    recyclerView.layoutManager = llm
+                    recyclerView.adapter = adapter
                 }
             }
             .addOnFailureListener{
@@ -140,6 +151,10 @@ class RecipeActivity : AppCompatActivity() {
     fun delete(view: View?){
         db.collection("recetas").document(idRecipe).delete()
         finish()
+    }
+
+    fun enlist(inStr: String, del: String): List<String> {
+        return inStr.split(del)
     }
 
 }

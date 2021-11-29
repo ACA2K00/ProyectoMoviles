@@ -21,11 +21,12 @@
         android:id="@+id/pRecipeImageIV"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.848"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.133"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
@@ -36,21 +37,13 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="85dp"
         android:hint="Recipe Ingredients"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pCategoryTV"
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pRecipeNameTV" />
-
-    <TextView
-        android:id="@+id/pRecipeDescriptionTV"
-        android:layout_width="323dp"
-        android:layout_height="271dp"
-        android:layout_marginTop="44dp"
-        android:hint="Recipe Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pRecipeIngredientsTV" />
+        app:layout_constraintTop_toBottomOf="@+id/pRecipeNameTV"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/pRecipeAuthorTV"
@@ -80,22 +73,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="43dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="8dp"
         android:text="Recipe Category"
         app:layout_constraintBottom_toTopOf="@+id/pRecipeImageIV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pRecipeIngredientsTV" />
+        app:layout_constraintStart_toEndOf="@+id/pRecipeIngredientsTV"
+        app:layout_constraintTop_toBottomOf="@+id/pRecipeAuthorTV" />
 
     <Button
         android:id="@+id/viewPrfBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:text="View Author Profile"
-        app:layout_constraintBottom_toTopOf="@+id/pRecipeCloseBT"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pRecipeDescriptionTV"
-        app:layout_constraintVertical_bias="0.851" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.91" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pStepsRV"
+        android:layout_width="409dp"
+        android:layout_height="337dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

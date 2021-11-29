@@ -1,6 +1,5 @@
 package com.emilianosloth.proyectofinal
 
-import android.R.attr
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
@@ -13,20 +12,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import android.R.attr.bitmap
 import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
-import com.google.common.io.ByteArrayDataOutput
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 
 class CreateRecipeActivity : AppCompatActivity() {
     lateinit var recipeName : EditText
     lateinit var recipeIngredients : EditText
-    lateinit var recipeInstructions : EditText
+    lateinit var recipeStep : EditText
     lateinit var rUpBT: Button
     lateinit var idRecipe: String
     var isEditing: Boolean = false
@@ -39,13 +35,15 @@ class CreateRecipeActivity : AppCompatActivity() {
     lateinit var imagen: ImageView
     lateinit var registrarImagenBT : Button
 
+    lateinit var steps: String
+    lateinit var addBT: Button
+
 
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
 
         //obtener un tumbnail
 
         val image = result.data?.extras?.get("data") as Bitmap
-
 
         val storageReference = storage.reference
         val imageReference = storageReference.child(recipeName.text.toString()+".jpg")
@@ -55,16 +53,12 @@ class CreateRecipeActivity : AppCompatActivity() {
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-
         var uploadTask = imagesReference.putBytes(data)
         uploadTask.addOnFailureListener{
             Log.wtf("Falla", "fallo")
         }.addOnSuccessListener { taskSnapshot ->
             Log.wtf("Success", "Logrado")
         }
-
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,10 +68,12 @@ class CreateRecipeActivity : AppCompatActivity() {
         recipeName = findViewById(R.id.recipeNameET)
         recipeIngredients = findViewById(R.id.recipeIngredientsET)
 
-        recipeInstructions = findViewById(R.id.recipeInstructionsET)
+        recipeStep = findViewById(R.id.recStepTV)
         rUpBT = findViewById(R.id.recipeUploadBT)
 
         imagen = findViewById(R.id.previewImageView)
+        addBT = findViewById(R.id.addStepBT)
+        steps = ""
 
         if (intent.getStringExtra("NAME") != null && intent.getStringExtra("AUTHOR") != null){
             isEditing = true
@@ -90,7 +86,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                     for (document in documents){
                         recipeName.setText(document.getString("Recipe Name").toString())
                         recipeIngredients.setText(document.getString("Ingredients").toString())
-                        recipeInstructions.setText(document.getString("Instructions").toString())
+                        recipeStep.setText(document.getString("Instructions").toString())
                     }
                 }
         }
@@ -121,16 +117,22 @@ class CreateRecipeActivity : AppCompatActivity() {
             }
         }
 
+        addBT.setOnClickListener{
+            steps += recipeStep.text.toString() + "-"
+            Toast.makeText(this, "Step Added", Toast.LENGTH_SHORT).show()
+        }
+
         rUpBT.setOnClickListener{
             if(recipeName.text.toString() == "" || recipeIngredients.text.toString() == "" ||
-                recipeInstructions.text.toString() == ""){
+                recipeStep.text.toString() == ""){
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }else{
+                steps = steps.substring(0, steps.length - 1)
                 val receta = hashMapOf(
                     "Autor" to Firebase.auth.currentUser?.email,
                     "Recipe Name" to recipeName.text.toString(),
-                    "Ingredients" to enlist(recipeIngredients.text.toString()),
-                    "Instructions" to recipeInstructions.text.toString(),
+                    "Ingredients" to enlist(recipeIngredients.text.toString(), ","),
+                    "Instructions" to steps,
                     "Category" to spinner.getTag().toString()
                 )
                 if(isEditing){
@@ -177,8 +179,8 @@ class CreateRecipeActivity : AppCompatActivity() {
         buscarImagen.launch("image/*")
     }
 
-    fun enlist(inStr: String): String {
-        val inlist = inStr.split(",")
+    fun enlist(inStr: String, del: String): String {
+        val inlist = inStr.split(del)
         return inlist.joinToString(separator = "\n")
     }
 

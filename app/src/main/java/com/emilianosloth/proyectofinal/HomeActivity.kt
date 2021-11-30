@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -61,7 +62,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 //                    }else{
 //                        urls_data.add(document.getString("Image").toString())
 //                    }
-                    urls_data.add(document.getString("Image").toString())
+                    urls_data.add(document.id)
 
                     Log.wtf("Names", names_data[totalRecipes])
                     totalRecipes++
@@ -104,6 +105,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     fun logout(view: View?){
         Firebase.auth.signOut()
+        LoginManager.getInstance().logOut();
         finish()
     }
 

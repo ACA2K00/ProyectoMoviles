@@ -97,7 +97,7 @@ class RecipeActivity : AppCompatActivity() {
 
     fun leerImagen(nombreImagen : String){
         val storageReference = FirebaseStorage.getInstance().getReference("images/$nombreImagen")
-        val localfile = File.createTempFile("imagenTemporal", "jpg")
+        val localfile = File.createTempFile("imagenTemporal2", "jpg")
         storageReference.getFile(localfile)
             .addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
@@ -132,6 +132,17 @@ class RecipeActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun shareRecipe(view: View?){
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Check out my Recipe at Fast Chef App: \n ${recipeName.text} \n ${recipeInstructions} \n Chef: ${authorName.text}\n Download it here: www.androidStoreLinkIfWeHadOne.com")
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
     fun goBack(view: View?){

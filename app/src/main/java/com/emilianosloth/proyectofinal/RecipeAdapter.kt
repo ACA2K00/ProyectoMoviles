@@ -14,12 +14,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 import java.util.concurrent.Executors
 
 class RecipeAdapter(private var names: ArrayList<String>, private var authors: ArrayList<String>,
                     private var images: ArrayList<String>,
                     private var listener : View.OnClickListener) :
     RecyclerView.Adapter<RecipeAdapter.ViewHolder>(){
+
+    var defaulturl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -71,11 +75,26 @@ class RecipeAdapter(private var names: ArrayList<String>, private var authors: A
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = names[position]
         holder.author.text = authors[position]
-        loadImg(holder.image, images[position])
+        leerImagen(holder.image, images[position])
     }
 
     override fun getItemCount(): Int {
         return names.size
+    }
+
+    fun leerImagen(view: ImageView, nombreImagen : String){
+        val storageReference = FirebaseStorage.getInstance().getReference("images/$nombreImagen")
+        val localfile = File.createTempFile("imagenTemporal2", "jpg")
+        storageReference.getFile(localfile)
+            .addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                view.setImageBitmap(bitmap)
+                Log.d("FIREBASE RECETA IMAGEN", nombreImagen)
+            }
+            .addOnFailureListener {
+                loadImg(view, defaulturl)
+                Log.e("FIREBASE Platillo", "exception: ${it.message}")
+            }
     }
 
     fun loadImg(view: ImageView, url: String){

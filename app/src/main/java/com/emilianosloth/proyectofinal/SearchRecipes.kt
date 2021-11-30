@@ -46,7 +46,7 @@ class SearchRecipes : AppCompatActivity(), View.OnClickListener {
                 for(document in documents){
                     names_data.add(document.getString("Recipe Name").toString())
                     authors_data.add(document.getString("Autor").toString())
-                    urls_data.add(document.getString("Image").toString())
+                    urls_data.add(document.id)
                     Log.wtf("Names", names_data[totalRecipes])
                     totalRecipes++
 

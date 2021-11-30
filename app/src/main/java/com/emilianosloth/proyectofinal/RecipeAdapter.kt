@@ -32,6 +32,8 @@ class RecipeAdapter(private var names: ArrayList<String>, private var authors: A
         var author : TextView
         var image : ImageView
         var like : RadioButton
+        var checked = false
+
 
         init {
             name = itemView.findViewById(R.id.recnameCV)
@@ -39,8 +41,8 @@ class RecipeAdapter(private var names: ArrayList<String>, private var authors: A
             image = itemView.findViewById(R.id.imgCV)
             like = itemView.findViewById(R.id.likeButton)
 
+
             like.setOnClickListener{
-//                Toast.makeText(itemView.context, "${name.text}, ${author.text}", Toast.LENGTH_SHORT).show()
                 var likes : ArrayList<String>
                 db.collection("usuarios")
                     .whereEqualTo("id", Firebase.auth.currentUser?.email.toString())
@@ -48,9 +50,14 @@ class RecipeAdapter(private var names: ArrayList<String>, private var authors: A
                     .addOnSuccessListener { documents ->
                         for (document in documents){
                             likes = document.get("likes") as ArrayList<String>
-                            likes.add("${name.text},${author.text}")
+                            if (checked || likes.contains("${name.text},${author.text}")){
+                                likes.remove("${name.text},${author.text}")
+                                like.setChecked(false)
+                            }else{
+                                likes.add("${name.text},${author.text}")
+                            }
+
                             db.collection("usuarios").document(document.id).update("likes", likes)
-                            Toast.makeText(itemView.context, "Like", Toast.LENGTH_SHORT).show()
                         }
 
 
@@ -62,7 +69,6 @@ class RecipeAdapter(private var names: ArrayList<String>, private var authors: A
 
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

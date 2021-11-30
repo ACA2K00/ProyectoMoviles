@@ -51,6 +51,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show()
                 registrarDatos();
                 Log.d("FIREBASE", "Registro Exitoso")
+                Thread.sleep(1000)
                 finish()
             }else{
                 Toast.makeText(this, "Registro fracaso: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
@@ -62,19 +63,24 @@ class CreateAccountActivity : AppCompatActivity() {
 
     fun registrarDatos(){
         //1ero - crear un hashmap
+        Log.wtf("CREACIOM", "EMPEZAMOS")
         val usuarios = hashMapOf(
             "id" to Firebase.auth.currentUser?.email,
             "name" to name.text.toString(),
-            "imageURL" to imageURL.text.toString()
+            "imageURL" to imageURL.text.toString(),
+            "likes" to ArrayList<String>(),
+            "seguidos" to ArrayList<String>()
         )
+        Log.wtf("creaciom", usuarios.toString())
         //2ndo agregar a firestore
+        Log.wtf("CREACIOM", "SEGUIMOS")
         Firebase.firestore.collection("usuarios")
             .add(usuarios)
             .addOnSuccessListener {
-                Log.d("FIRABASE", "id: ${it.id}")
+                Log.wtf("FIRABASE", "id: ${it.id}")
             }
             .addOnFailureListener{
-                Log.e("FIRABASE", "id: ${it.message}")
+                Log.wtf("FIRABASE", "id: ${it.message}")
             }
     }
 

@@ -8,10 +8,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.Executors
 
 class RecipeAdapter(private var names: ArrayList<String>, private var authors: ArrayList<String>,
@@ -19,16 +21,42 @@ class RecipeAdapter(private var names: ArrayList<String>, private var authors: A
                     private var listener : View.OnClickListener) :
     RecyclerView.Adapter<RecipeAdapter.ViewHolder>(){
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val db = Firebase.firestore
         var name : TextView
         var author : TextView
         var image : ImageView
+        var like : RadioButton
 
         init {
             name = itemView.findViewById(R.id.recnameCV)
             author = itemView.findViewById(R.id.recauthCV)
             image = itemView.findViewById(R.id.imgCV)
+            like = itemView.findViewById(R.id.likeButton)
+
+            like.setOnClickListener{
+//                Toast.makeText(itemView.context, "${name.text}, ${author.text}", Toast.LENGTH_SHORT).show()
+                var likes : ArrayList<String>
+                db.collection("usuarios")
+                    .whereEqualTo("id", Firebase.auth.currentUser?.email.toString())
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        for (document in documents){
+                            likes = document.get("likes") as ArrayList<String>
+                            likes.add("${name.text},${author.text}")
+                            db.collection("usuarios").document(document.id).update("likes", likes)
+                            Toast.makeText(itemView.context, "Like", Toast.LENGTH_SHORT).show()
+                        }
+
+
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(itemView.context, "${it.toString()}", Toast.LENGTH_SHORT).show()
+                    }
+
+
+            }
         }
 
     }

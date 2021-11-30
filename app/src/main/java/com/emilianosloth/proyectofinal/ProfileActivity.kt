@@ -122,4 +122,9 @@ class ProfileActivity : AppCompatActivity() {
         finish()
     }
 
+    fun viewLikes(view: View?){
+        intent = Intent(this, UserLikeActivity::class.java)
+        startActivity(intent)
+    }
+
 }

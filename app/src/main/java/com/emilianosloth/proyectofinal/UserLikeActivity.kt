@@ -29,6 +29,7 @@ class UserLikeActivity : AppCompatActivity(), View.OnClickListener {
         likesName = ArrayList()
         likesAuthor = ArrayList()
         likesURL = ArrayList()
+
         likes = ArrayList()
         docID = ArrayList()
         recyclerView = findViewById(R.id.likeRecyclerView)
@@ -54,10 +55,22 @@ class UserLikeActivity : AppCompatActivity(), View.OnClickListener {
                     .addOnSuccessListener { documents ->
                         for (document in documents){
                             if (likesAuthor.contains(document.getString("Autor"))){
-                                docID.add(document.id)
+                                likesURL.add(document.getString("Image") as String)
                                 Log.wtf("likes ", "${document.getString("Recipe Name")}, ${document.getString("Autor")}")
                             }
                         }
+
+                        Log.wtf("adapter", likesURL.toString())
+
+                        val adapter = RecipeAdapter(likesName, likesAuthor, likesURL,this)
+                        var llm = LinearLayoutManager(this)
+                        llm.orientation = LinearLayoutManager.VERTICAL
+
+                        // setup the recycler view
+                        recyclerView.layoutManager = llm
+                        recyclerView.adapter = adapter
+
+//
                     }
                     .addOnFailureListener{
                         Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
@@ -70,13 +83,7 @@ class UserLikeActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-        for (id in docID){
-        db.collection("recetas").document(id)
-            .get()
-            .addOnSuccessListener { document ->
-                likesURL.add(document.getString("Image") as String)
-            }
-        }
+
 
 
         //Ya estan los arrayList de: nombres, autores, img
@@ -85,13 +92,7 @@ class UserLikeActivity : AppCompatActivity(), View.OnClickListener {
 
 
 //
-//        val adapter = RecipeAdapter(likesName,likesAuthor,likesURL, this)
-//        var llm = LinearLayoutManager(this)
-//
-//        llm.orientation = LinearLayoutManager.VERTICAL
-//
-//        recyclerView.layoutManager = llm
-//        recyclerView.adapter = adapter
+
 
 
     }

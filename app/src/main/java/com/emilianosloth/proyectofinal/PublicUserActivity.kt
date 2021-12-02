@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -86,5 +88,29 @@ class PublicUserActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun follow(view: View?){
+        var seguidos : ArrayList<String>
+        db.collection("usuarios")
+            .whereEqualTo("id", Firebase.auth.currentUser?.email.toString())
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents){
+                    seguidos = document.get("seguidos") as ArrayList<String>
+                    if (seguidos.contains("${displayUser.text}")){
+                        seguidos.remove("${displayUser.text}")
+                    }else{
+                        seguidos.add("${displayUser.text}")
+                    }
+
+                    db.collection("usuarios").document(document.id).update("seguidos", seguidos)
+                }
+
+
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }
